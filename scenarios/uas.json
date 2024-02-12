@@ -1,0 +1,41 @@
+{
+    "name" : "uas20",
+    "settings": {
+        "_id": 29,
+        "x": 950,
+        "y": 300,
+        "fill": "#1100FF",
+        "stroke": "black",
+        "strokeWidth": 0,
+        "shadowBlur": 1,
+        "shadowOffset": {
+          "x": 2,
+          "y": 2
+        },
+        "shadowOpacity": 0.2,
+        "opacity": 0.8,
+        "draggable": true,
+        "radius": 6,
+        "shadowColor": "black",
+        "type": "node",
+        "range": 150
+      },
+    "function" : ["/home/mace/Documents/utm/uas_client.py -t uas20"],
+    "type": "UAS",
+    "extra": {
+        "disks": "False",
+        "dump": {
+          "start" : "False",
+          "delay" : 10,
+          "duration": 100
+        },
+        "mobility": { "model": "random_waypoint",
+                      "zone_x" : 1000,
+                      "zone_y" : 600,
+                      "zone_z" : 1000,
+                      "velocity_upper" : 5,
+                      "velocity_lower" : 2
+                    },
+        "network": ["mobile"]
+    }
+}

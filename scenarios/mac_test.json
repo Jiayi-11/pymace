@@ -1,0 +1,272 @@
+{
+    "settings": {
+        "omnet": "False",
+        "core": "True",
+        "dump": "False",
+        "number_of_nodes": 9,
+        "start_delay": 5,
+        "username": "bruno",
+        "disks_folder": "/mnt/pymace/",
+        "report_folder": "/home/mace/temp/reports/",
+        "runtime": 150,
+        "emane_location": [
+          47.57917,
+          -122.13232,
+          2
+        ],
+        "emane_scale": 150
+    },
+    "networks": [
+        {
+            "name" : "fixed",
+            "prefix" : "10.0.0.0/24",
+            "routing": "batman",
+            "settings": {
+                "range": "120",
+                "bandwidth": "54000000",
+                "delay": "1000",
+                "jitter": "0",
+                "error": "0",
+                "emane": {
+                    "use" : "True",
+                    "unicastrate" : "12",
+                    "multicastrate" : "12",
+                    "mode" : "1",
+                    "fading.model" : "nakagami"
+                }
+            }
+        },
+        {
+            "name" : "mobile",
+            "prefix" : "12.0.0.0/24",
+            "routing": "batman",
+            "settings": {
+                "range": "90",
+                "bandwidth": "54000000",
+                "delay": "500",
+                "jitter": "2",
+                "error": "2",
+                "emane": {
+                    "use" : "False",
+                    "unicastrate" : "12",
+                    "multicastrate" : "12",
+                    "mode" : "1",
+                    "fading.model" : "nakagami"
+                }
+            }
+        }
+    ],
+    "nodes": [
+        {
+            "name" : "tower1",
+            "settings": {
+                "_id": 0,
+                "x": 100,
+                "y": 100,
+                "fill": "#1100FF",
+                "stroke": "black",
+                "strokeWidth": 0,
+                "shadowBlur": 1,
+                "shadowOffset": {
+                  "x": 2,
+                  "y": 2
+                },
+                "shadowOpacity": 0.2,
+                "opacity": 0.8,
+                "draggable": true,
+                "radius": 6,
+                "shadowColor": "black",
+                "type": "node",
+                "range": 250
+              },
+            "function" : ["sleep 30 && cd /home/mace/Documents/pymace/scripts && ./mac_overhead_test.py /home/mace/temp/node0/"],
+            "type": "UTM",
+            "extra": {
+                "disks": "False",
+                "dump": {
+                  "start" : "False",
+                  "delay" : 10,
+                  "duration": 100
+                },
+                "mobility": "none",
+                "network": ["fixed"]
+            }
+        },
+        {
+            "name" : "tower2",
+            "settings": {
+                "_id": 1,
+                "x": 200,
+                "y": 100,
+                "fill": "#1100FF",
+                "stroke": "black",
+                "strokeWidth": 0,
+                "shadowBlur": 1,
+                "shadowOffset": {
+                  "x": 2,
+                  "y": 2
+                },
+                "shadowOpacity": 0.2,
+                "opacity": 0.8,
+                "draggable": true,
+                "radius": 6,
+                "shadowColor": "black",
+                "type": "node",
+                "range": 250
+              },
+            "function" : ["iperf3 -s"],
+            "type": "UTM",
+            "extra": {
+                "disks": "False",
+                "dump": {
+                  "start" : "False",
+                  "delay" : 10,
+                  "duration": 100
+                },
+                "mobility": "none",
+                "network": ["fixed"]
+            }
+        },
+        {
+          "name" : "tower3",
+          "settings": {
+              "_id": 2,
+              "x": 300,
+              "y": 100,
+              "fill": "#1100FF",
+              "stroke": "black",
+              "strokeWidth": 0,
+              "shadowBlur": 1,
+              "shadowOffset": {
+                "x": 2,
+                "y": 2
+              },
+              "shadowOpacity": 0.2,
+              "opacity": 0.8,
+              "draggable": true,
+              "radius": 6,
+              "shadowColor": "black",
+              "type": "node",
+              "range": 250
+            },
+          "function" : ["iperf3 -s"],
+          "type": "UTM",
+          "extra": {
+              "disks": "False",
+              "dump": {
+                "start" : "False",
+                "delay" : 10,
+                "duration": 100
+              },
+              "mobility": "none",
+              "network": ["fixed"]
+          }
+        },
+        {
+          "name" : "tower4",
+          "settings": {
+              "_id": 3,
+              "x": 400,
+              "y": 100,
+              "fill": "#1100FF",
+              "stroke": "black",
+              "strokeWidth": 0,
+              "shadowBlur": 1,
+              "shadowOffset": {
+                "x": 2,
+                "y": 2
+              },
+              "shadowOpacity": 0.2,
+              "opacity": 0.8,
+              "draggable": true,
+              "radius": 6,
+              "shadowColor": "black",
+              "type": "node",
+              "range": 250
+            },
+          "function" : ["iperf3 -s"],
+          "type": "UTM",
+          "extra": {
+              "disks": "False",
+              "dump": {
+                "start" : "False",
+                "delay" : 10,
+                "duration": 100
+              },
+              "mobility": "none",
+              "network": ["fixed"]
+          }
+        },
+        {
+          "name" : "tower5",
+          "settings": {
+              "_id": 4,
+              "x": 500,
+              "y": 100,
+              "fill": "#1100FF",
+              "stroke": "black",
+              "strokeWidth": 0,
+              "shadowBlur": 1,
+              "shadowOffset": {
+                "x": 2,
+                "y": 2
+              },
+              "shadowOpacity": 0.2,
+              "opacity": 0.8,
+              "draggable": true,
+              "radius": 6,
+              "shadowColor": "black",
+              "type": "node",
+              "range": 250
+            },
+          "function" : ["iperf3 -s"],
+          "type": "UTM",
+          "extra": {
+              "disks": "False",
+              "dump": {
+                "start" : "False",
+                "delay" : 10,
+                "duration": 100
+              },
+              "mobility": "none",
+              "network": ["fixed"]
+          }
+        },
+        {
+          "name" : "tower6",
+          "settings": {
+              "_id": 5,
+              "x": 600,
+              "y": 100,
+              "fill": "#1100FF",
+              "stroke": "black",
+              "strokeWidth": 0,
+              "shadowBlur": 1,
+              "shadowOffset": {
+                "x": 2,
+                "y": 2
+              },
+              "shadowOpacity": 0.2,
+              "opacity": 0.8,
+              "draggable": true,
+              "radius": 6,
+              "shadowColor": "black",
+              "type": "node",
+              "range": 250
+            },
+          "function" : ["iperf3 -s"],
+          "type": "UTM",
+          "extra": {
+              "disks": "False",
+              "dump": {
+                "start" : "False",
+                "delay" : 10,
+                "duration": 100
+              },
+              "mobility": "none",
+              "network": ["fixed"]
+          }
+        }
+    ]   
+}
+  

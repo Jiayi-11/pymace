@@ -1,0 +1,2696 @@
+{
+    "settings": {
+        "omnet": "False",
+        "core": "True",
+                        "dump": {
+                  "start" : "False",
+                  "delay" : 10,
+                  "duration": 100
+                },
+        "number_of_nodes": 9,
+        "start_delay": 5,
+        "username": "bruno",
+        "disks_folder" : "/mnt/pymace/"
+    },
+    "networks": [
+        {
+            "name" : "fixed",
+            "prefix" : "10.0.0.0/24",
+            "routing": "batman",
+            "settings": {
+                "range": "250",
+                "bandwidth": "433300000",
+                "delay": "1000",
+                "jitter": "0",
+                "error": "0",
+                "emane": "False"
+            }
+        },
+        {
+            "name" : "mobile",
+            "prefix" : "12.0.0.0/24",
+            "routing": "none",
+            "settings": {
+                "range": "250",
+                "bandwidth": "54000000",
+                "delay": "3000",
+                "jitter": "2",
+                "error": "0",
+                "emane": "False"
+            }
+        }
+    ],
+    "nodes": [
+        {
+            "name" : "tower1",
+            "settings":   {
+                "_id": 0,
+                "x": 149.67,
+                "y": 151,
+                "fill": "#1100FF",
+                "stroke": "black",
+                "strokeWidth": 0,
+                "shadowBlur": 1,
+                "shadowOffset": {
+                  "x": 2,
+                  "y": 2
+                },
+                "shadowOpacity": 0.2,
+                "opacity": 0.8,
+                "draggable": true,
+                "radius": 6,
+                "shadowColor": "black",
+                "type": "node",
+                "range": 250
+            },
+            "function" : [ "disk", "etcd" , "/home/mace/Documents/utm/utm_server.py -t tower1"],
+            "type": "Tower",
+            "extra": {
+                "disks": "False",
+                "dump": {
+                  "start" : "False",
+                  "delay" : 10,
+                  "duration": 100
+                },
+                "mobility": "none",
+                "network": ["fixed", "mobile"]
+            }
+        },
+        {
+            "name" : "tower2",
+            "settings": {
+                "_id": 1,
+                "x": 350.667,
+                "y": 250,
+                "fill": "#1100FF",
+                "stroke": "black",
+                "strokeWidth": 0,
+                "shadowBlur": 1,
+                "shadowOffset": {
+                  "x": 2,
+                  "y": 2
+                },
+                "shadowOpacity": 0.2,
+                "opacity": 0.8,
+                "draggable": true,
+                "radius": 6,
+                "shadowColor": "black",
+                "type": "node",
+                "range": 250
+              },
+            "function" :  ["disk", "etcd" , "/home/mace/Documents/utm/utm_server.py -t tower2"],
+            "type": "UTM",
+            "extra": {
+                "disks": "False",
+                "dump": {
+                  "start" : "False",
+                  "delay" : 10,
+                  "duration": 100
+                },
+                "mobility": "none",
+                "network": ["fixed", "mobile"]
+            }
+        },
+        {
+            "name" : "tower3",
+            "settings": {
+                "_id": 2,
+                "x": 498.66668701171875,
+                "y": 101,
+                "fill": "#1100FF",
+                "stroke": "black",
+                "strokeWidth": 0,
+                "shadowBlur": 1,
+                "shadowOffset": {
+                  "x": 2,
+                  "y": 2
+                },
+                "shadowOpacity": 0.2,
+                "opacity": 0.8,
+                "draggable": true,
+                "radius": 6,
+                "shadowColor": "black",
+                "type": "node",
+                "range": 250
+              },
+            "function" : ["disk", "etcd" , "/home/mace/Documents/utm/utm_server.py -t tower3"],
+            "type": "UTM",
+            "extra": {
+                "disks": "False",
+                "dump": {
+                  "start" : "False",
+                  "delay" : 10,
+                  "duration": 100
+                },
+                "mobility": "none",
+                "network": ["fixed", "mobile"]
+            }
+        },
+        {
+            "name" : "tower4",
+            "settings": {
+                "_id": 3,
+                "x": 451.66668701171875,
+                "y": 448,
+                "fill": "#1100FF",
+                "stroke": "black",
+                "strokeWidth": 0,
+                "shadowBlur": 1,
+                "shadowOffset": {
+                  "x": 2,
+                  "y": 2
+                },
+                "shadowOpacity": 0.2,
+                "opacity": 0.8,
+                "draggable": true,
+                "radius": 6,
+                "shadowColor": "black",
+                "type": "node",
+                "range": 250
+              },
+            "function" : ["disk", "etcd" , "/home/mace/Documents/utm/utm_server.py -t tower4"],
+            "type": "UTM",
+            "extra": {
+                "disks": "False",
+                "dump": {
+                  "start" : "False",
+                  "delay" : 10,
+                  "duration": 100
+                },
+                "mobility": "none",
+                "network": ["fixed", "mobile"]
+            }
+        },
+        {
+            "name" : "tower5",
+            "settings": {
+                "_id": 4,
+                "x": 649.6666870117188,
+                "y": 450,
+                "fill": "#1100FF",
+                "stroke": "black",
+                "strokeWidth": 0,
+                "shadowBlur": 1,
+                "shadowOffset": {
+                  "x": 2,
+                  "y": 2
+                },
+                "shadowOpacity": 0.2,
+                "opacity": 0.8,
+                "draggable": true,
+                "radius": 6,
+                "shadowColor": "black",
+                "type": "node",
+                "range": 250
+              },
+            "function" : ["disk", "etcd" , "/home/mace/Documents/utm/utm_server.py -t tower5"],
+            "type": "UTM",
+            "extra": {
+                "disks": "False",
+                "dump": {
+                  "start" : "False",
+                  "delay" : 10,
+                  "duration": 100
+                },
+                "mobility": "none",
+                "network": ["fixed", "mobile"]
+            }
+        },
+        {
+            "name" : "tower6",
+            "settings": {
+                "_id": 5,
+                "x": 800.6666870117188,
+                "y": 301,
+                "fill": "#1100FF",
+                "stroke": "black",
+                "strokeWidth": 0,
+                "shadowBlur": 1,
+                "shadowOffset": {
+                  "x": 2,
+                  "y": 2
+                },
+                "shadowOpacity": 0.2,
+                "opacity": 0.8,
+                "draggable": true,
+                "radius": 6,
+                "shadowColor": "black",
+                "type": "node",
+                "range": 250
+              },
+            "function" : ["disk", "etcd" , "/home/mace/Documents/utm/utm_server.py -t tower6"],
+            "type": "UTM",
+            "extra": {
+                "disks": "False",
+                "dump": {
+                  "start" : "False",
+                  "delay" : 10,
+                  "duration": 100
+                },
+                "mobility": "none",
+                "network": ["fixed", "mobile"]
+            }
+        },
+        {
+            "name" : "tower7",
+            "settings": {
+                "_id": 6,
+                "x": 1001.6666870117188,
+                "y": 300,
+                "fill": "#1100FF",
+                "stroke": "black",
+                "strokeWidth": 0,
+                "shadowBlur": 1,
+                "shadowOffset": {
+                  "x": 2,
+                  "y": 2
+                },
+                "shadowOpacity": 0.2,
+                "opacity": 0.8,
+                "draggable": true,
+                "radius": 6,
+                "shadowColor": "black",
+                "type": "node",
+                "range": 250
+              },
+            "function" : ["disk", "etcd" , "/home/mace/Documents/utm/utm_server.py -t tower7"],
+            "type": "UTM",
+            "extra": {
+                "disks": "False",
+                "dump": {
+                  "start" : "False",
+                  "delay" : 10,
+                  "duration": 100
+                },
+                "mobility": "none",
+                "network": ["fixed", "mobile"]
+            }
+        },
+        {
+            "name" : "tower8",
+            "settings": {
+                "_id": 7,
+                "x": 180,
+                "y": 400,
+                "fill": "#1100FF",
+                "stroke": "black",
+                "strokeWidth": 0,
+                "shadowBlur": 1,
+                "shadowOffset": {
+                  "x": 2,
+                  "y": 2
+                },
+                "shadowOpacity": 0.2,
+                "opacity": 0.8,
+                "draggable": true,
+                "radius": 6,
+                "shadowColor": "black",
+                "type": "node",
+                "range": 250
+              },
+            "function" : ["disk", "etcd" , "/home/mace/Documents/utm/utm_server.py -t tower8"],
+            "type": "UTM",
+            "extra": {
+                "disks": "False",
+                "dump": {
+                  "start" : "False",
+                  "delay" : 10,
+                  "duration": 100
+                },
+                "mobility": "none",
+                "network": ["fixed", "mobile"]
+            }
+        },
+        {
+          "name" : "tower9",
+          "settings": {
+              "_id": 8,
+              "x": 860,
+              "y": 105,
+              "fill": "#1100FF",
+              "stroke": "black",
+              "strokeWidth": 0,
+              "shadowBlur": 1,
+              "shadowOffset": {
+                "x": 2,
+                "y": 2
+              },
+              "shadowOpacity": 0.2,
+              "opacity": 0.8,
+              "draggable": true,
+              "radius": 6,
+              "shadowColor": "black",
+              "type": "node",
+              "range": 250
+            },
+          "function" : ["disk", "etcd" , "/home/mace/Documents/utm/utm_server.py -t tower9"],
+          "type": "UTM",
+          "extra": {
+              "disks": "False",
+                "dump": {
+                  "start" : "False",
+                  "delay" : 10,
+                  "duration": 100
+                },
+              "mobility": "none",
+              "network": ["fixed", "mobile"]
+          }
+        },
+        {
+          "name" : "tower10",
+          "settings": {
+              "_id": 9,
+              "x": 960,
+              "y": 500,
+              "fill": "#1100FF",
+              "stroke": "black",
+              "strokeWidth": 0,
+              "shadowBlur": 1,
+              "shadowOffset": {
+                "x": 2,
+                "y": 2
+              },
+              "shadowOpacity": 0.2,
+              "opacity": 0.8,
+              "draggable": true,
+              "radius": 6,
+              "shadowColor": "black",
+              "type": "node",
+              "range": 250
+            },
+          "function" : ["disk", "etcd" , "/home/mace/Documents/utm/utm_server.py -t tower10"],
+          "type": "UTM",
+          "extra": {
+              "disks": "False",
+                "dump": {
+                  "start" : "False",
+                  "delay" : 10,
+                  "duration": 100
+                },
+              "mobility": "none",
+              "network": ["fixed", "mobile"]
+          }
+        },
+        {
+          "name": "uas1",
+          "settings": {
+            "_id": 0,
+            "x": 950,
+            "y": 300,
+            "fill": "#1100FF",
+            "stroke": "black",
+            "strokeWidth": 0,
+            "shadowBlur": 1,
+            "shadowOffset": {
+              "x": 2,
+              "y": 2
+            },
+            "shadowOpacity": 0.2,
+            "opacity": 0.8,
+            "draggable": true,
+            "radius": 6,
+            "shadowColor": "black",
+            "type": "node",
+            "range": 150
+          },
+          "function": [
+            "/home/mace/Documents/utm/uas_client.py -t uas1"
+          ],
+          "type": "UAS",
+          "extra": {
+            "disks": "False",
+            "dump": {
+              "start": "False",
+              "delay": 10,
+              "duration": 100
+            },
+            "mobility": {
+              "model": "random_waypoint",
+              "zone_x": 1000,
+              "zone_y": 600,
+              "zone_z": 1000,
+              "velocity_upper": 5,
+              "velocity_lower": 2
+            },
+            "network": [
+              "mobile"
+            ]
+          }
+        },
+        {
+          "name": "uas2",
+          "settings": {
+            "_id": 1,
+            "x": 950,
+            "y": 300,
+            "fill": "#1100FF",
+            "stroke": "black",
+            "strokeWidth": 0,
+            "shadowBlur": 1,
+            "shadowOffset": {
+              "x": 2,
+              "y": 2
+            },
+            "shadowOpacity": 0.2,
+            "opacity": 0.8,
+            "draggable": true,
+            "radius": 6,
+            "shadowColor": "black",
+            "type": "node",
+            "range": 150
+          },
+          "function": [
+            "/home/mace/Documents/utm/uas_client.py -t uas2"
+          ],
+          "type": "UAS",
+          "extra": {
+            "disks": "False",
+            "dump": {
+              "start": "False",
+              "delay": 10,
+              "duration": 100
+            },
+            "mobility": {
+              "model": "random_waypoint",
+              "zone_x": 1000,
+              "zone_y": 600,
+              "zone_z": 1000,
+              "velocity_upper": 5,
+              "velocity_lower": 2
+            },
+            "network": [
+              "mobile"
+            ]
+          }
+        },
+        {
+          "name": "uas3",
+          "settings": {
+            "_id": 2,
+            "x": 950,
+            "y": 300,
+            "fill": "#1100FF",
+            "stroke": "black",
+            "strokeWidth": 0,
+            "shadowBlur": 1,
+            "shadowOffset": {
+              "x": 2,
+              "y": 2
+            },
+            "shadowOpacity": 0.2,
+            "opacity": 0.8,
+            "draggable": true,
+            "radius": 6,
+            "shadowColor": "black",
+            "type": "node",
+            "range": 150
+          },
+          "function": [
+            "/home/mace/Documents/utm/uas_client.py -t uas3"
+          ],
+          "type": "UAS",
+          "extra": {
+            "disks": "False",
+            "dump": {
+              "start": "False",
+              "delay": 10,
+              "duration": 100
+            },
+            "mobility": {
+              "model": "random_waypoint",
+              "zone_x": 1000,
+              "zone_y": 600,
+              "zone_z": 1000,
+              "velocity_upper": 5,
+              "velocity_lower": 2
+            },
+            "network": [
+              "mobile"
+            ]
+          }
+        },
+        {
+          "name": "uas4",
+          "settings": {
+            "_id": 3,
+            "x": 950,
+            "y": 300,
+            "fill": "#1100FF",
+            "stroke": "black",
+            "strokeWidth": 0,
+            "shadowBlur": 1,
+            "shadowOffset": {
+              "x": 2,
+              "y": 2
+            },
+            "shadowOpacity": 0.2,
+            "opacity": 0.8,
+            "draggable": true,
+            "radius": 6,
+            "shadowColor": "black",
+            "type": "node",
+            "range": 150
+          },
+          "function": [
+            "/home/mace/Documents/utm/uas_client.py -t uas4"
+          ],
+          "type": "UAS",
+          "extra": {
+            "disks": "False",
+            "dump": {
+              "start": "False",
+              "delay": 10,
+              "duration": 100
+            },
+            "mobility": {
+              "model": "random_waypoint",
+              "zone_x": 1000,
+              "zone_y": 600,
+              "zone_z": 1000,
+              "velocity_upper": 5,
+              "velocity_lower": 2
+            },
+            "network": [
+              "mobile"
+            ]
+          }
+        },
+        {
+          "name": "uas5",
+          "settings": {
+            "_id": 4,
+            "x": 950,
+            "y": 300,
+            "fill": "#1100FF",
+            "stroke": "black",
+            "strokeWidth": 0,
+            "shadowBlur": 1,
+            "shadowOffset": {
+              "x": 2,
+              "y": 2
+            },
+            "shadowOpacity": 0.2,
+            "opacity": 0.8,
+            "draggable": true,
+            "radius": 6,
+            "shadowColor": "black",
+            "type": "node",
+            "range": 150
+          },
+          "function": [
+            "/home/mace/Documents/utm/uas_client.py -t uas5"
+          ],
+          "type": "UAS",
+          "extra": {
+            "disks": "False",
+            "dump": {
+              "start": "False",
+              "delay": 10,
+              "duration": 100
+            },
+            "mobility": {
+              "model": "random_waypoint",
+              "zone_x": 1000,
+              "zone_y": 600,
+              "zone_z": 1000,
+              "velocity_upper": 5,
+              "velocity_lower": 2
+            },
+            "network": [
+              "mobile"
+            ]
+          }
+        },
+        {
+          "name": "uas6",
+          "settings": {
+            "_id": 5,
+            "x": 950,
+            "y": 300,
+            "fill": "#1100FF",
+            "stroke": "black",
+            "strokeWidth": 0,
+            "shadowBlur": 1,
+            "shadowOffset": {
+              "x": 2,
+              "y": 2
+            },
+            "shadowOpacity": 0.2,
+            "opacity": 0.8,
+            "draggable": true,
+            "radius": 6,
+            "shadowColor": "black",
+            "type": "node",
+            "range": 150
+          },
+          "function": [
+            "/home/mace/Documents/utm/uas_client.py -t uas6"
+          ],
+          "type": "UAS",
+          "extra": {
+            "disks": "False",
+            "dump": {
+              "start": "False",
+              "delay": 10,
+              "duration": 100
+            },
+            "mobility": {
+              "model": "random_waypoint",
+              "zone_x": 1000,
+              "zone_y": 600,
+              "zone_z": 1000,
+              "velocity_upper": 5,
+              "velocity_lower": 2
+            },
+            "network": [
+              "mobile"
+            ]
+          }
+        },
+        {
+          "name": "uas7",
+          "settings": {
+            "_id": 6,
+            "x": 950,
+            "y": 300,
+            "fill": "#1100FF",
+            "stroke": "black",
+            "strokeWidth": 0,
+            "shadowBlur": 1,
+            "shadowOffset": {
+              "x": 2,
+              "y": 2
+            },
+            "shadowOpacity": 0.2,
+            "opacity": 0.8,
+            "draggable": true,
+            "radius": 6,
+            "shadowColor": "black",
+            "type": "node",
+            "range": 150
+          },
+          "function": [
+            "/home/mace/Documents/utm/uas_client.py -t uas7"
+          ],
+          "type": "UAS",
+          "extra": {
+            "disks": "False",
+            "dump": {
+              "start": "False",
+              "delay": 10,
+              "duration": 100
+            },
+            "mobility": {
+              "model": "random_waypoint",
+              "zone_x": 1000,
+              "zone_y": 600,
+              "zone_z": 1000,
+              "velocity_upper": 5,
+              "velocity_lower": 2
+            },
+            "network": [
+              "mobile"
+            ]
+          }
+        },
+        {
+          "name": "uas8",
+          "settings": {
+            "_id": 7,
+            "x": 950,
+            "y": 300,
+            "fill": "#1100FF",
+            "stroke": "black",
+            "strokeWidth": 0,
+            "shadowBlur": 1,
+            "shadowOffset": {
+              "x": 2,
+              "y": 2
+            },
+            "shadowOpacity": 0.2,
+            "opacity": 0.8,
+            "draggable": true,
+            "radius": 6,
+            "shadowColor": "black",
+            "type": "node",
+            "range": 150
+          },
+          "function": [
+            "/home/mace/Documents/utm/uas_client.py -t uas8"
+          ],
+          "type": "UAS",
+          "extra": {
+            "disks": "False",
+            "dump": {
+              "start": "False",
+              "delay": 10,
+              "duration": 100
+            },
+            "mobility": {
+              "model": "random_waypoint",
+              "zone_x": 1000,
+              "zone_y": 600,
+              "zone_z": 1000,
+              "velocity_upper": 5,
+              "velocity_lower": 2
+            },
+            "network": [
+              "mobile"
+            ]
+          }
+        },
+        {
+          "name": "uas9",
+          "settings": {
+            "_id": 8,
+            "x": 950,
+            "y": 300,
+            "fill": "#1100FF",
+            "stroke": "black",
+            "strokeWidth": 0,
+            "shadowBlur": 1,
+            "shadowOffset": {
+              "x": 2,
+              "y": 2
+            },
+            "shadowOpacity": 0.2,
+            "opacity": 0.8,
+            "draggable": true,
+            "radius": 6,
+            "shadowColor": "black",
+            "type": "node",
+            "range": 150
+          },
+          "function": [
+            "/home/mace/Documents/utm/uas_client.py -t uas9"
+          ],
+          "type": "UAS",
+          "extra": {
+            "disks": "False",
+            "dump": {
+              "start": "False",
+              "delay": 10,
+              "duration": 100
+            },
+            "mobility": {
+              "model": "random_waypoint",
+              "zone_x": 1000,
+              "zone_y": 600,
+              "zone_z": 1000,
+              "velocity_upper": 5,
+              "velocity_lower": 2
+            },
+            "network": [
+              "mobile"
+            ]
+          }
+        },
+        {
+          "name": "uas10",
+          "settings": {
+            "_id": 9,
+            "x": 950,
+            "y": 300,
+            "fill": "#1100FF",
+            "stroke": "black",
+            "strokeWidth": 0,
+            "shadowBlur": 1,
+            "shadowOffset": {
+              "x": 2,
+              "y": 2
+            },
+            "shadowOpacity": 0.2,
+            "opacity": 0.8,
+            "draggable": true,
+            "radius": 6,
+            "shadowColor": "black",
+            "type": "node",
+            "range": 150
+          },
+          "function": [
+            "/home/mace/Documents/utm/uas_client.py -t uas10"
+          ],
+          "type": "UAS",
+          "extra": {
+            "disks": "False",
+            "dump": {
+              "start": "False",
+              "delay": 10,
+              "duration": 100
+            },
+            "mobility": {
+              "model": "random_waypoint",
+              "zone_x": 1000,
+              "zone_y": 600,
+              "zone_z": 1000,
+              "velocity_upper": 5,
+              "velocity_lower": 2
+            },
+            "network": [
+              "mobile"
+            ]
+          }
+        },
+        {
+          "name": "uas11",
+          "settings": {
+            "_id": 10,
+            "x": 950,
+            "y": 300,
+            "fill": "#1100FF",
+            "stroke": "black",
+            "strokeWidth": 0,
+            "shadowBlur": 1,
+            "shadowOffset": {
+              "x": 2,
+              "y": 2
+            },
+            "shadowOpacity": 0.2,
+            "opacity": 0.8,
+            "draggable": true,
+            "radius": 6,
+            "shadowColor": "black",
+            "type": "node",
+            "range": 150
+          },
+          "function": [
+            "/home/mace/Documents/utm/uas_client.py -t uas11"
+          ],
+          "type": "UAS",
+          "extra": {
+            "disks": "False",
+            "dump": {
+              "start": "False",
+              "delay": 10,
+              "duration": 100
+            },
+            "mobility": {
+              "model": "random_waypoint",
+              "zone_x": 1000,
+              "zone_y": 600,
+              "zone_z": 1000,
+              "velocity_upper": 5,
+              "velocity_lower": 2
+            },
+            "network": [
+              "mobile"
+            ]
+          }
+        },
+        {
+          "name": "uas12",
+          "settings": {
+            "_id": 11,
+            "x": 950,
+            "y": 300,
+            "fill": "#1100FF",
+            "stroke": "black",
+            "strokeWidth": 0,
+            "shadowBlur": 1,
+            "shadowOffset": {
+              "x": 2,
+              "y": 2
+            },
+            "shadowOpacity": 0.2,
+            "opacity": 0.8,
+            "draggable": true,
+            "radius": 6,
+            "shadowColor": "black",
+            "type": "node",
+            "range": 150
+          },
+          "function": [
+            "/home/mace/Documents/utm/uas_client.py -t uas12"
+          ],
+          "type": "UAS",
+          "extra": {
+            "disks": "False",
+            "dump": {
+              "start": "False",
+              "delay": 10,
+              "duration": 100
+            },
+            "mobility": {
+              "model": "random_waypoint",
+              "zone_x": 1000,
+              "zone_y": 600,
+              "zone_z": 1000,
+              "velocity_upper": 5,
+              "velocity_lower": 2
+            },
+            "network": [
+              "mobile"
+            ]
+          }
+        },
+        {
+          "name": "uas13",
+          "settings": {
+            "_id": 12,
+            "x": 950,
+            "y": 300,
+            "fill": "#1100FF",
+            "stroke": "black",
+            "strokeWidth": 0,
+            "shadowBlur": 1,
+            "shadowOffset": {
+              "x": 2,
+              "y": 2
+            },
+            "shadowOpacity": 0.2,
+            "opacity": 0.8,
+            "draggable": true,
+            "radius": 6,
+            "shadowColor": "black",
+            "type": "node",
+            "range": 150
+          },
+          "function": [
+            "/home/mace/Documents/utm/uas_client.py -t uas13"
+          ],
+          "type": "UAS",
+          "extra": {
+            "disks": "False",
+            "dump": {
+              "start": "False",
+              "delay": 10,
+              "duration": 100
+            },
+            "mobility": {
+              "model": "random_waypoint",
+              "zone_x": 1000,
+              "zone_y": 600,
+              "zone_z": 1000,
+              "velocity_upper": 5,
+              "velocity_lower": 2
+            },
+            "network": [
+              "mobile"
+            ]
+          }
+        },
+        {
+          "name": "uas14",
+          "settings": {
+            "_id": 13,
+            "x": 950,
+            "y": 300,
+            "fill": "#1100FF",
+            "stroke": "black",
+            "strokeWidth": 0,
+            "shadowBlur": 1,
+            "shadowOffset": {
+              "x": 2,
+              "y": 2
+            },
+            "shadowOpacity": 0.2,
+            "opacity": 0.8,
+            "draggable": true,
+            "radius": 6,
+            "shadowColor": "black",
+            "type": "node",
+            "range": 150
+          },
+          "function": [
+            "/home/mace/Documents/utm/uas_client.py -t uas14"
+          ],
+          "type": "UAS",
+          "extra": {
+            "disks": "False",
+            "dump": {
+              "start": "False",
+              "delay": 10,
+              "duration": 100
+            },
+            "mobility": {
+              "model": "random_waypoint",
+              "zone_x": 1000,
+              "zone_y": 600,
+              "zone_z": 1000,
+              "velocity_upper": 5,
+              "velocity_lower": 2
+            },
+            "network": [
+              "mobile"
+            ]
+          }
+        },
+        {
+          "name": "uas15",
+          "settings": {
+            "_id": 14,
+            "x": 950,
+            "y": 300,
+            "fill": "#1100FF",
+            "stroke": "black",
+            "strokeWidth": 0,
+            "shadowBlur": 1,
+            "shadowOffset": {
+              "x": 2,
+              "y": 2
+            },
+            "shadowOpacity": 0.2,
+            "opacity": 0.8,
+            "draggable": true,
+            "radius": 6,
+            "shadowColor": "black",
+            "type": "node",
+            "range": 150
+          },
+          "function": [
+            "/home/mace/Documents/utm/uas_client.py -t uas15"
+          ],
+          "type": "UAS",
+          "extra": {
+            "disks": "False",
+            "dump": {
+              "start": "False",
+              "delay": 10,
+              "duration": 100
+            },
+            "mobility": {
+              "model": "random_waypoint",
+              "zone_x": 1000,
+              "zone_y": 600,
+              "zone_z": 1000,
+              "velocity_upper": 5,
+              "velocity_lower": 2
+            },
+            "network": [
+              "mobile"
+            ]
+          }
+        },
+        {
+          "name": "uas16",
+          "settings": {
+            "_id": 15,
+            "x": 950,
+            "y": 300,
+            "fill": "#1100FF",
+            "stroke": "black",
+            "strokeWidth": 0,
+            "shadowBlur": 1,
+            "shadowOffset": {
+              "x": 2,
+              "y": 2
+            },
+            "shadowOpacity": 0.2,
+            "opacity": 0.8,
+            "draggable": true,
+            "radius": 6,
+            "shadowColor": "black",
+            "type": "node",
+            "range": 150
+          },
+          "function": [
+            "/home/mace/Documents/utm/uas_client.py -t uas16"
+          ],
+          "type": "UAS",
+          "extra": {
+            "disks": "False",
+            "dump": {
+              "start": "False",
+              "delay": 10,
+              "duration": 100
+            },
+            "mobility": {
+              "model": "random_waypoint",
+              "zone_x": 1000,
+              "zone_y": 600,
+              "zone_z": 1000,
+              "velocity_upper": 5,
+              "velocity_lower": 2
+            },
+            "network": [
+              "mobile"
+            ]
+          }
+        },
+        {
+          "name": "uas17",
+          "settings": {
+            "_id": 16,
+            "x": 950,
+            "y": 300,
+            "fill": "#1100FF",
+            "stroke": "black",
+            "strokeWidth": 0,
+            "shadowBlur": 1,
+            "shadowOffset": {
+              "x": 2,
+              "y": 2
+            },
+            "shadowOpacity": 0.2,
+            "opacity": 0.8,
+            "draggable": true,
+            "radius": 6,
+            "shadowColor": "black",
+            "type": "node",
+            "range": 150
+          },
+          "function": [
+            "/home/mace/Documents/utm/uas_client.py -t uas17"
+          ],
+          "type": "UAS",
+          "extra": {
+            "disks": "False",
+            "dump": {
+              "start": "False",
+              "delay": 10,
+              "duration": 100
+            },
+            "mobility": {
+              "model": "random_waypoint",
+              "zone_x": 1000,
+              "zone_y": 600,
+              "zone_z": 1000,
+              "velocity_upper": 5,
+              "velocity_lower": 2
+            },
+            "network": [
+              "mobile"
+            ]
+          }
+        },
+        {
+          "name": "uas18",
+          "settings": {
+            "_id": 17,
+            "x": 950,
+            "y": 300,
+            "fill": "#1100FF",
+            "stroke": "black",
+            "strokeWidth": 0,
+            "shadowBlur": 1,
+            "shadowOffset": {
+              "x": 2,
+              "y": 2
+            },
+            "shadowOpacity": 0.2,
+            "opacity": 0.8,
+            "draggable": true,
+            "radius": 6,
+            "shadowColor": "black",
+            "type": "node",
+            "range": 150
+          },
+          "function": [
+            "/home/mace/Documents/utm/uas_client.py -t uas18"
+          ],
+          "type": "UAS",
+          "extra": {
+            "disks": "False",
+            "dump": {
+              "start": "False",
+              "delay": 10,
+              "duration": 100
+            },
+            "mobility": {
+              "model": "random_waypoint",
+              "zone_x": 1000,
+              "zone_y": 600,
+              "zone_z": 1000,
+              "velocity_upper": 5,
+              "velocity_lower": 2
+            },
+            "network": [
+              "mobile"
+            ]
+          }
+        },
+        {
+          "name": "uas19",
+          "settings": {
+            "_id": 18,
+            "x": 950,
+            "y": 300,
+            "fill": "#1100FF",
+            "stroke": "black",
+            "strokeWidth": 0,
+            "shadowBlur": 1,
+            "shadowOffset": {
+              "x": 2,
+              "y": 2
+            },
+            "shadowOpacity": 0.2,
+            "opacity": 0.8,
+            "draggable": true,
+            "radius": 6,
+            "shadowColor": "black",
+            "type": "node",
+            "range": 150
+          },
+          "function": [
+            "/home/mace/Documents/utm/uas_client.py -t uas19"
+          ],
+          "type": "UAS",
+          "extra": {
+            "disks": "False",
+            "dump": {
+              "start": "False",
+              "delay": 10,
+              "duration": 100
+            },
+            "mobility": {
+              "model": "random_waypoint",
+              "zone_x": 1000,
+              "zone_y": 600,
+              "zone_z": 1000,
+              "velocity_upper": 5,
+              "velocity_lower": 2
+            },
+            "network": [
+              "mobile"
+            ]
+          }
+        },
+        {
+          "name": "uas20",
+          "settings": {
+            "_id": 19,
+            "x": 950,
+            "y": 300,
+            "fill": "#1100FF",
+            "stroke": "black",
+            "strokeWidth": 0,
+            "shadowBlur": 1,
+            "shadowOffset": {
+              "x": 2,
+              "y": 2
+            },
+            "shadowOpacity": 0.2,
+            "opacity": 0.8,
+            "draggable": true,
+            "radius": 6,
+            "shadowColor": "black",
+            "type": "node",
+            "range": 150
+          },
+          "function": [
+            "/home/mace/Documents/utm/uas_client.py -t uas20"
+          ],
+          "type": "UAS",
+          "extra": {
+            "disks": "False",
+            "dump": {
+              "start": "False",
+              "delay": 10,
+              "duration": 100
+            },
+            "mobility": {
+              "model": "random_waypoint",
+              "zone_x": 1000,
+              "zone_y": 600,
+              "zone_z": 1000,
+              "velocity_upper": 5,
+              "velocity_lower": 2
+            },
+            "network": [
+              "mobile"
+            ]
+          }
+        },
+        {
+          "name": "uas21",
+          "settings": {
+            "_id": 20,
+            "x": 950,
+            "y": 300,
+            "fill": "#1100FF",
+            "stroke": "black",
+            "strokeWidth": 0,
+            "shadowBlur": 1,
+            "shadowOffset": {
+              "x": 2,
+              "y": 2
+            },
+            "shadowOpacity": 0.2,
+            "opacity": 0.8,
+            "draggable": true,
+            "radius": 6,
+            "shadowColor": "black",
+            "type": "node",
+            "range": 150
+          },
+          "function": [
+            "/home/mace/Documents/utm/uas_client.py -t uas21"
+          ],
+          "type": "UAS",
+          "extra": {
+            "disks": "False",
+            "dump": {
+              "start": "False",
+              "delay": 10,
+              "duration": 100
+            },
+            "mobility": {
+              "model": "random_waypoint",
+              "zone_x": 1000,
+              "zone_y": 600,
+              "zone_z": 1000,
+              "velocity_upper": 5,
+              "velocity_lower": 2
+            },
+            "network": [
+              "mobile"
+            ]
+          }
+        },
+        {
+          "name": "uas22",
+          "settings": {
+            "_id": 21,
+            "x": 950,
+            "y": 300,
+            "fill": "#1100FF",
+            "stroke": "black",
+            "strokeWidth": 0,
+            "shadowBlur": 1,
+            "shadowOffset": {
+              "x": 2,
+              "y": 2
+            },
+            "shadowOpacity": 0.2,
+            "opacity": 0.8,
+            "draggable": true,
+            "radius": 6,
+            "shadowColor": "black",
+            "type": "node",
+            "range": 150
+          },
+          "function": [
+            "/home/mace/Documents/utm/uas_client.py -t uas22"
+          ],
+          "type": "UAS",
+          "extra": {
+            "disks": "False",
+            "dump": {
+              "start": "False",
+              "delay": 10,
+              "duration": 100
+            },
+            "mobility": {
+              "model": "random_waypoint",
+              "zone_x": 1000,
+              "zone_y": 600,
+              "zone_z": 1000,
+              "velocity_upper": 5,
+              "velocity_lower": 2
+            },
+            "network": [
+              "mobile"
+            ]
+          }
+        },
+        {
+          "name": "uas23",
+          "settings": {
+            "_id": 22,
+            "x": 950,
+            "y": 300,
+            "fill": "#1100FF",
+            "stroke": "black",
+            "strokeWidth": 0,
+            "shadowBlur": 1,
+            "shadowOffset": {
+              "x": 2,
+              "y": 2
+            },
+            "shadowOpacity": 0.2,
+            "opacity": 0.8,
+            "draggable": true,
+            "radius": 6,
+            "shadowColor": "black",
+            "type": "node",
+            "range": 150
+          },
+          "function": [
+            "/home/mace/Documents/utm/uas_client.py -t uas23"
+          ],
+          "type": "UAS",
+          "extra": {
+            "disks": "False",
+            "dump": {
+              "start": "False",
+              "delay": 10,
+              "duration": 100
+            },
+            "mobility": {
+              "model": "random_waypoint",
+              "zone_x": 1000,
+              "zone_y": 600,
+              "zone_z": 1000,
+              "velocity_upper": 5,
+              "velocity_lower": 2
+            },
+            "network": [
+              "mobile"
+            ]
+          }
+        },
+        {
+          "name": "uas24",
+          "settings": {
+            "_id": 23,
+            "x": 950,
+            "y": 300,
+            "fill": "#1100FF",
+            "stroke": "black",
+            "strokeWidth": 0,
+            "shadowBlur": 1,
+            "shadowOffset": {
+              "x": 2,
+              "y": 2
+            },
+            "shadowOpacity": 0.2,
+            "opacity": 0.8,
+            "draggable": true,
+            "radius": 6,
+            "shadowColor": "black",
+            "type": "node",
+            "range": 150
+          },
+          "function": [
+            "/home/mace/Documents/utm/uas_client.py -t uas24"
+          ],
+          "type": "UAS",
+          "extra": {
+            "disks": "False",
+            "dump": {
+              "start": "False",
+              "delay": 10,
+              "duration": 100
+            },
+            "mobility": {
+              "model": "random_waypoint",
+              "zone_x": 1000,
+              "zone_y": 600,
+              "zone_z": 1000,
+              "velocity_upper": 5,
+              "velocity_lower": 2
+            },
+            "network": [
+              "mobile"
+            ]
+          }
+        },
+        {
+          "name": "uas25",
+          "settings": {
+            "_id": 24,
+            "x": 950,
+            "y": 300,
+            "fill": "#1100FF",
+            "stroke": "black",
+            "strokeWidth": 0,
+            "shadowBlur": 1,
+            "shadowOffset": {
+              "x": 2,
+              "y": 2
+            },
+            "shadowOpacity": 0.2,
+            "opacity": 0.8,
+            "draggable": true,
+            "radius": 6,
+            "shadowColor": "black",
+            "type": "node",
+            "range": 150
+          },
+          "function": [
+            "/home/mace/Documents/utm/uas_client.py -t uas25"
+          ],
+          "type": "UAS",
+          "extra": {
+            "disks": "False",
+            "dump": {
+              "start": "False",
+              "delay": 10,
+              "duration": 100
+            },
+            "mobility": {
+              "model": "random_waypoint",
+              "zone_x": 1000,
+              "zone_y": 600,
+              "zone_z": 1000,
+              "velocity_upper": 5,
+              "velocity_lower": 2
+            },
+            "network": [
+              "mobile"
+            ]
+          }
+        },
+        {
+          "name": "uas26",
+          "settings": {
+            "_id": 25,
+            "x": 950,
+            "y": 300,
+            "fill": "#1100FF",
+            "stroke": "black",
+            "strokeWidth": 0,
+            "shadowBlur": 1,
+            "shadowOffset": {
+              "x": 2,
+              "y": 2
+            },
+            "shadowOpacity": 0.2,
+            "opacity": 0.8,
+            "draggable": true,
+            "radius": 6,
+            "shadowColor": "black",
+            "type": "node",
+            "range": 150
+          },
+          "function": [
+            "/home/mace/Documents/utm/uas_client.py -t uas26"
+          ],
+          "type": "UAS",
+          "extra": {
+            "disks": "False",
+            "dump": {
+              "start": "False",
+              "delay": 10,
+              "duration": 100
+            },
+            "mobility": {
+              "model": "random_waypoint",
+              "zone_x": 1000,
+              "zone_y": 600,
+              "zone_z": 1000,
+              "velocity_upper": 5,
+              "velocity_lower": 2
+            },
+            "network": [
+              "mobile"
+            ]
+          }
+        },
+        {
+          "name": "uas27",
+          "settings": {
+            "_id": 26,
+            "x": 950,
+            "y": 300,
+            "fill": "#1100FF",
+            "stroke": "black",
+            "strokeWidth": 0,
+            "shadowBlur": 1,
+            "shadowOffset": {
+              "x": 2,
+              "y": 2
+            },
+            "shadowOpacity": 0.2,
+            "opacity": 0.8,
+            "draggable": true,
+            "radius": 6,
+            "shadowColor": "black",
+            "type": "node",
+            "range": 150
+          },
+          "function": [
+            "/home/mace/Documents/utm/uas_client.py -t uas27"
+          ],
+          "type": "UAS",
+          "extra": {
+            "disks": "False",
+            "dump": {
+              "start": "False",
+              "delay": 10,
+              "duration": 100
+            },
+            "mobility": {
+              "model": "random_waypoint",
+              "zone_x": 1000,
+              "zone_y": 600,
+              "zone_z": 1000,
+              "velocity_upper": 5,
+              "velocity_lower": 2
+            },
+            "network": [
+              "mobile"
+            ]
+          }
+        },
+        {
+          "name": "uas28",
+          "settings": {
+            "_id": 27,
+            "x": 950,
+            "y": 300,
+            "fill": "#1100FF",
+            "stroke": "black",
+            "strokeWidth": 0,
+            "shadowBlur": 1,
+            "shadowOffset": {
+              "x": 2,
+              "y": 2
+            },
+            "shadowOpacity": 0.2,
+            "opacity": 0.8,
+            "draggable": true,
+            "radius": 6,
+            "shadowColor": "black",
+            "type": "node",
+            "range": 150
+          },
+          "function": [
+            "/home/mace/Documents/utm/uas_client.py -t uas28"
+          ],
+          "type": "UAS",
+          "extra": {
+            "disks": "False",
+            "dump": {
+              "start": "False",
+              "delay": 10,
+              "duration": 100
+            },
+            "mobility": {
+              "model": "random_waypoint",
+              "zone_x": 1000,
+              "zone_y": 600,
+              "zone_z": 1000,
+              "velocity_upper": 5,
+              "velocity_lower": 2
+            },
+            "network": [
+              "mobile"
+            ]
+          }
+        },
+        {
+          "name": "uas29",
+          "settings": {
+            "_id": 28,
+            "x": 950,
+            "y": 300,
+            "fill": "#1100FF",
+            "stroke": "black",
+            "strokeWidth": 0,
+            "shadowBlur": 1,
+            "shadowOffset": {
+              "x": 2,
+              "y": 2
+            },
+            "shadowOpacity": 0.2,
+            "opacity": 0.8,
+            "draggable": true,
+            "radius": 6,
+            "shadowColor": "black",
+            "type": "node",
+            "range": 150
+          },
+          "function": [
+            "/home/mace/Documents/utm/uas_client.py -t uas29"
+          ],
+          "type": "UAS",
+          "extra": {
+            "disks": "False",
+            "dump": {
+              "start": "False",
+              "delay": 10,
+              "duration": 100
+            },
+            "mobility": {
+              "model": "random_waypoint",
+              "zone_x": 1000,
+              "zone_y": 600,
+              "zone_z": 1000,
+              "velocity_upper": 5,
+              "velocity_lower": 2
+            },
+            "network": [
+              "mobile"
+            ]
+          }
+        },
+        {
+          "name": "uas30",
+          "settings": {
+            "_id": 29,
+            "x": 950,
+            "y": 300,
+            "fill": "#1100FF",
+            "stroke": "black",
+            "strokeWidth": 0,
+            "shadowBlur": 1,
+            "shadowOffset": {
+              "x": 2,
+              "y": 2
+            },
+            "shadowOpacity": 0.2,
+            "opacity": 0.8,
+            "draggable": true,
+            "radius": 6,
+            "shadowColor": "black",
+            "type": "node",
+            "range": 150
+          },
+          "function": [
+            "/home/mace/Documents/utm/uas_client.py -t uas30"
+          ],
+          "type": "UAS",
+          "extra": {
+            "disks": "False",
+            "dump": {
+              "start": "False",
+              "delay": 10,
+              "duration": 100
+            },
+            "mobility": {
+              "model": "random_waypoint",
+              "zone_x": 1000,
+              "zone_y": 600,
+              "zone_z": 1000,
+              "velocity_upper": 5,
+              "velocity_lower": 2
+            },
+            "network": [
+              "mobile"
+            ]
+          }
+        },
+        {
+          "name": "uas31",
+          "settings": {
+            "_id": 30,
+            "x": 950,
+            "y": 300,
+            "fill": "#1100FF",
+            "stroke": "black",
+            "strokeWidth": 0,
+            "shadowBlur": 1,
+            "shadowOffset": {
+              "x": 2,
+              "y": 2
+            },
+            "shadowOpacity": 0.2,
+            "opacity": 0.8,
+            "draggable": true,
+            "radius": 6,
+            "shadowColor": "black",
+            "type": "node",
+            "range": 150
+          },
+          "function": [
+            "/home/mace/Documents/utm/uas_client.py -t uas31"
+          ],
+          "type": "UAS",
+          "extra": {
+            "disks": "False",
+            "dump": {
+              "start": "False",
+              "delay": 10,
+              "duration": 100
+            },
+            "mobility": {
+              "model": "random_waypoint",
+              "zone_x": 1000,
+              "zone_y": 600,
+              "zone_z": 1000,
+              "velocity_upper": 5,
+              "velocity_lower": 2
+            },
+            "network": [
+              "mobile"
+            ]
+          }
+        },
+        {
+          "name": "uas32",
+          "settings": {
+            "_id": 31,
+            "x": 950,
+            "y": 300,
+            "fill": "#1100FF",
+            "stroke": "black",
+            "strokeWidth": 0,
+            "shadowBlur": 1,
+            "shadowOffset": {
+              "x": 2,
+              "y": 2
+            },
+            "shadowOpacity": 0.2,
+            "opacity": 0.8,
+            "draggable": true,
+            "radius": 6,
+            "shadowColor": "black",
+            "type": "node",
+            "range": 150
+          },
+          "function": [
+            "/home/mace/Documents/utm/uas_client.py -t uas32"
+          ],
+          "type": "UAS",
+          "extra": {
+            "disks": "False",
+            "dump": {
+              "start": "False",
+              "delay": 10,
+              "duration": 100
+            },
+            "mobility": {
+              "model": "random_waypoint",
+              "zone_x": 1000,
+              "zone_y": 600,
+              "zone_z": 1000,
+              "velocity_upper": 5,
+              "velocity_lower": 2
+            },
+            "network": [
+              "mobile"
+            ]
+          }
+        },
+        {
+          "name": "uas33",
+          "settings": {
+            "_id": 32,
+            "x": 950,
+            "y": 300,
+            "fill": "#1100FF",
+            "stroke": "black",
+            "strokeWidth": 0,
+            "shadowBlur": 1,
+            "shadowOffset": {
+              "x": 2,
+              "y": 2
+            },
+            "shadowOpacity": 0.2,
+            "opacity": 0.8,
+            "draggable": true,
+            "radius": 6,
+            "shadowColor": "black",
+            "type": "node",
+            "range": 150
+          },
+          "function": [
+            "/home/mace/Documents/utm/uas_client.py -t uas33"
+          ],
+          "type": "UAS",
+          "extra": {
+            "disks": "False",
+            "dump": {
+              "start": "False",
+              "delay": 10,
+              "duration": 100
+            },
+            "mobility": {
+              "model": "random_waypoint",
+              "zone_x": 1000,
+              "zone_y": 600,
+              "zone_z": 1000,
+              "velocity_upper": 5,
+              "velocity_lower": 2
+            },
+            "network": [
+              "mobile"
+            ]
+          }
+        },
+        {
+          "name": "uas34",
+          "settings": {
+            "_id": 33,
+            "x": 950,
+            "y": 300,
+            "fill": "#1100FF",
+            "stroke": "black",
+            "strokeWidth": 0,
+            "shadowBlur": 1,
+            "shadowOffset": {
+              "x": 2,
+              "y": 2
+            },
+            "shadowOpacity": 0.2,
+            "opacity": 0.8,
+            "draggable": true,
+            "radius": 6,
+            "shadowColor": "black",
+            "type": "node",
+            "range": 150
+          },
+          "function": [
+            "/home/mace/Documents/utm/uas_client.py -t uas34"
+          ],
+          "type": "UAS",
+          "extra": {
+            "disks": "False",
+            "dump": {
+              "start": "False",
+              "delay": 10,
+              "duration": 100
+            },
+            "mobility": {
+              "model": "random_waypoint",
+              "zone_x": 1000,
+              "zone_y": 600,
+              "zone_z": 1000,
+              "velocity_upper": 5,
+              "velocity_lower": 2
+            },
+            "network": [
+              "mobile"
+            ]
+          }
+        },
+        {
+          "name": "uas35",
+          "settings": {
+            "_id": 34,
+            "x": 950,
+            "y": 300,
+            "fill": "#1100FF",
+            "stroke": "black",
+            "strokeWidth": 0,
+            "shadowBlur": 1,
+            "shadowOffset": {
+              "x": 2,
+              "y": 2
+            },
+            "shadowOpacity": 0.2,
+            "opacity": 0.8,
+            "draggable": true,
+            "radius": 6,
+            "shadowColor": "black",
+            "type": "node",
+            "range": 150
+          },
+          "function": [
+            "/home/mace/Documents/utm/uas_client.py -t uas35"
+          ],
+          "type": "UAS",
+          "extra": {
+            "disks": "False",
+            "dump": {
+              "start": "False",
+              "delay": 10,
+              "duration": 100
+            },
+            "mobility": {
+              "model": "random_waypoint",
+              "zone_x": 1000,
+              "zone_y": 600,
+              "zone_z": 1000,
+              "velocity_upper": 5,
+              "velocity_lower": 2
+            },
+            "network": [
+              "mobile"
+            ]
+          }
+        },
+        {
+          "name": "uas36",
+          "settings": {
+            "_id": 35,
+            "x": 950,
+            "y": 300,
+            "fill": "#1100FF",
+            "stroke": "black",
+            "strokeWidth": 0,
+            "shadowBlur": 1,
+            "shadowOffset": {
+              "x": 2,
+              "y": 2
+            },
+            "shadowOpacity": 0.2,
+            "opacity": 0.8,
+            "draggable": true,
+            "radius": 6,
+            "shadowColor": "black",
+            "type": "node",
+            "range": 150
+          },
+          "function": [
+            "/home/mace/Documents/utm/uas_client.py -t uas36"
+          ],
+          "type": "UAS",
+          "extra": {
+            "disks": "False",
+            "dump": {
+              "start": "False",
+              "delay": 10,
+              "duration": 100
+            },
+            "mobility": {
+              "model": "random_waypoint",
+              "zone_x": 1000,
+              "zone_y": 600,
+              "zone_z": 1000,
+              "velocity_upper": 5,
+              "velocity_lower": 2
+            },
+            "network": [
+              "mobile"
+            ]
+          }
+        },
+        {
+          "name": "uas37",
+          "settings": {
+            "_id": 36,
+            "x": 950,
+            "y": 300,
+            "fill": "#1100FF",
+            "stroke": "black",
+            "strokeWidth": 0,
+            "shadowBlur": 1,
+            "shadowOffset": {
+              "x": 2,
+              "y": 2
+            },
+            "shadowOpacity": 0.2,
+            "opacity": 0.8,
+            "draggable": true,
+            "radius": 6,
+            "shadowColor": "black",
+            "type": "node",
+            "range": 150
+          },
+          "function": [
+            "/home/mace/Documents/utm/uas_client.py -t uas37"
+          ],
+          "type": "UAS",
+          "extra": {
+            "disks": "False",
+            "dump": {
+              "start": "False",
+              "delay": 10,
+              "duration": 100
+            },
+            "mobility": {
+              "model": "random_waypoint",
+              "zone_x": 1000,
+              "zone_y": 600,
+              "zone_z": 1000,
+              "velocity_upper": 5,
+              "velocity_lower": 2
+            },
+            "network": [
+              "mobile"
+            ]
+          }
+        },
+        {
+          "name": "uas38",
+          "settings": {
+            "_id": 37,
+            "x": 950,
+            "y": 300,
+            "fill": "#1100FF",
+            "stroke": "black",
+            "strokeWidth": 0,
+            "shadowBlur": 1,
+            "shadowOffset": {
+              "x": 2,
+              "y": 2
+            },
+            "shadowOpacity": 0.2,
+            "opacity": 0.8,
+            "draggable": true,
+            "radius": 6,
+            "shadowColor": "black",
+            "type": "node",
+            "range": 150
+          },
+          "function": [
+            "/home/mace/Documents/utm/uas_client.py -t uas38"
+          ],
+          "type": "UAS",
+          "extra": {
+            "disks": "False",
+            "dump": {
+              "start": "False",
+              "delay": 10,
+              "duration": 100
+            },
+            "mobility": {
+              "model": "random_waypoint",
+              "zone_x": 1000,
+              "zone_y": 600,
+              "zone_z": 1000,
+              "velocity_upper": 5,
+              "velocity_lower": 2
+            },
+            "network": [
+              "mobile"
+            ]
+          }
+        },
+        {
+          "name": "uas39",
+          "settings": {
+            "_id": 38,
+            "x": 950,
+            "y": 300,
+            "fill": "#1100FF",
+            "stroke": "black",
+            "strokeWidth": 0,
+            "shadowBlur": 1,
+            "shadowOffset": {
+              "x": 2,
+              "y": 2
+            },
+            "shadowOpacity": 0.2,
+            "opacity": 0.8,
+            "draggable": true,
+            "radius": 6,
+            "shadowColor": "black",
+            "type": "node",
+            "range": 150
+          },
+          "function": [
+            "/home/mace/Documents/utm/uas_client.py -t uas39"
+          ],
+          "type": "UAS",
+          "extra": {
+            "disks": "False",
+            "dump": {
+              "start": "False",
+              "delay": 10,
+              "duration": 100
+            },
+            "mobility": {
+              "model": "random_waypoint",
+              "zone_x": 1000,
+              "zone_y": 600,
+              "zone_z": 1000,
+              "velocity_upper": 5,
+              "velocity_lower": 2
+            },
+            "network": [
+              "mobile"
+            ]
+          }
+        },
+        {
+          "name": "uas40",
+          "settings": {
+            "_id": 39,
+            "x": 950,
+            "y": 300,
+            "fill": "#1100FF",
+            "stroke": "black",
+            "strokeWidth": 0,
+            "shadowBlur": 1,
+            "shadowOffset": {
+              "x": 2,
+              "y": 2
+            },
+            "shadowOpacity": 0.2,
+            "opacity": 0.8,
+            "draggable": true,
+            "radius": 6,
+            "shadowColor": "black",
+            "type": "node",
+            "range": 150
+          },
+          "function": [
+            "/home/mace/Documents/utm/uas_client.py -t uas40"
+          ],
+          "type": "UAS",
+          "extra": {
+            "disks": "False",
+            "dump": {
+              "start": "False",
+              "delay": 10,
+              "duration": 100
+            },
+            "mobility": {
+              "model": "random_waypoint",
+              "zone_x": 1000,
+              "zone_y": 600,
+              "zone_z": 1000,
+              "velocity_upper": 5,
+              "velocity_lower": 2
+            },
+            "network": [
+              "mobile"
+            ]
+          }
+        },
+        {
+          "name": "uas41",
+          "settings": {
+            "_id": 40,
+            "x": 950,
+            "y": 300,
+            "fill": "#1100FF",
+            "stroke": "black",
+            "strokeWidth": 0,
+            "shadowBlur": 1,
+            "shadowOffset": {
+              "x": 2,
+              "y": 2
+            },
+            "shadowOpacity": 0.2,
+            "opacity": 0.8,
+            "draggable": true,
+            "radius": 6,
+            "shadowColor": "black",
+            "type": "node",
+            "range": 150
+          },
+          "function": [
+            "/home/mace/Documents/utm/uas_client.py -t uas41"
+          ],
+          "type": "UAS",
+          "extra": {
+            "disks": "False",
+            "dump": {
+              "start": "False",
+              "delay": 10,
+              "duration": 100
+            },
+            "mobility": {
+              "model": "random_waypoint",
+              "zone_x": 1000,
+              "zone_y": 600,
+              "zone_z": 1000,
+              "velocity_upper": 5,
+              "velocity_lower": 2
+            },
+            "network": [
+              "mobile"
+            ]
+          }
+        },
+        {
+          "name": "uas42",
+          "settings": {
+            "_id": 41,
+            "x": 950,
+            "y": 300,
+            "fill": "#1100FF",
+            "stroke": "black",
+            "strokeWidth": 0,
+            "shadowBlur": 1,
+            "shadowOffset": {
+              "x": 2,
+              "y": 2
+            },
+            "shadowOpacity": 0.2,
+            "opacity": 0.8,
+            "draggable": true,
+            "radius": 6,
+            "shadowColor": "black",
+            "type": "node",
+            "range": 150
+          },
+          "function": [
+            "/home/mace/Documents/utm/uas_client.py -t uas42"
+          ],
+          "type": "UAS",
+          "extra": {
+            "disks": "False",
+            "dump": {
+              "start": "False",
+              "delay": 10,
+              "duration": 100
+            },
+            "mobility": {
+              "model": "random_waypoint",
+              "zone_x": 1000,
+              "zone_y": 600,
+              "zone_z": 1000,
+              "velocity_upper": 5,
+              "velocity_lower": 2
+            },
+            "network": [
+              "mobile"
+            ]
+          }
+        },
+        {
+          "name": "uas43",
+          "settings": {
+            "_id": 42,
+            "x": 950,
+            "y": 300,
+            "fill": "#1100FF",
+            "stroke": "black",
+            "strokeWidth": 0,
+            "shadowBlur": 1,
+            "shadowOffset": {
+              "x": 2,
+              "y": 2
+            },
+            "shadowOpacity": 0.2,
+            "opacity": 0.8,
+            "draggable": true,
+            "radius": 6,
+            "shadowColor": "black",
+            "type": "node",
+            "range": 150
+          },
+          "function": [
+            "/home/mace/Documents/utm/uas_client.py -t uas43"
+          ],
+          "type": "UAS",
+          "extra": {
+            "disks": "False",
+            "dump": {
+              "start": "False",
+              "delay": 10,
+              "duration": 100
+            },
+            "mobility": {
+              "model": "random_waypoint",
+              "zone_x": 1000,
+              "zone_y": 600,
+              "zone_z": 1000,
+              "velocity_upper": 5,
+              "velocity_lower": 2
+            },
+            "network": [
+              "mobile"
+            ]
+          }
+        },
+        {
+          "name": "uas44",
+          "settings": {
+            "_id": 43,
+            "x": 950,
+            "y": 300,
+            "fill": "#1100FF",
+            "stroke": "black",
+            "strokeWidth": 0,
+            "shadowBlur": 1,
+            "shadowOffset": {
+              "x": 2,
+              "y": 2
+            },
+            "shadowOpacity": 0.2,
+            "opacity": 0.8,
+            "draggable": true,
+            "radius": 6,
+            "shadowColor": "black",
+            "type": "node",
+            "range": 150
+          },
+          "function": [
+            "/home/mace/Documents/utm/uas_client.py -t uas44"
+          ],
+          "type": "UAS",
+          "extra": {
+            "disks": "False",
+            "dump": {
+              "start": "False",
+              "delay": 10,
+              "duration": 100
+            },
+            "mobility": {
+              "model": "random_waypoint",
+              "zone_x": 1000,
+              "zone_y": 600,
+              "zone_z": 1000,
+              "velocity_upper": 5,
+              "velocity_lower": 2
+            },
+            "network": [
+              "mobile"
+            ]
+          }
+        },
+        {
+          "name": "uas45",
+          "settings": {
+            "_id": 44,
+            "x": 950,
+            "y": 300,
+            "fill": "#1100FF",
+            "stroke": "black",
+            "strokeWidth": 0,
+            "shadowBlur": 1,
+            "shadowOffset": {
+              "x": 2,
+              "y": 2
+            },
+            "shadowOpacity": 0.2,
+            "opacity": 0.8,
+            "draggable": true,
+            "radius": 6,
+            "shadowColor": "black",
+            "type": "node",
+            "range": 150
+          },
+          "function": [
+            "/home/mace/Documents/utm/uas_client.py -t uas45"
+          ],
+          "type": "UAS",
+          "extra": {
+            "disks": "False",
+            "dump": {
+              "start": "False",
+              "delay": 10,
+              "duration": 100
+            },
+            "mobility": {
+              "model": "random_waypoint",
+              "zone_x": 1000,
+              "zone_y": 600,
+              "zone_z": 1000,
+              "velocity_upper": 5,
+              "velocity_lower": 2
+            },
+            "network": [
+              "mobile"
+            ]
+          }
+        },
+        {
+          "name": "uas46",
+          "settings": {
+            "_id": 45,
+            "x": 950,
+            "y": 300,
+            "fill": "#1100FF",
+            "stroke": "black",
+            "strokeWidth": 0,
+            "shadowBlur": 1,
+            "shadowOffset": {
+              "x": 2,
+              "y": 2
+            },
+            "shadowOpacity": 0.2,
+            "opacity": 0.8,
+            "draggable": true,
+            "radius": 6,
+            "shadowColor": "black",
+            "type": "node",
+            "range": 150
+          },
+          "function": [
+            "/home/mace/Documents/utm/uas_client.py -t uas46"
+          ],
+          "type": "UAS",
+          "extra": {
+            "disks": "False",
+            "dump": {
+              "start": "False",
+              "delay": 10,
+              "duration": 100
+            },
+            "mobility": {
+              "model": "random_waypoint",
+              "zone_x": 1000,
+              "zone_y": 600,
+              "zone_z": 1000,
+              "velocity_upper": 5,
+              "velocity_lower": 2
+            },
+            "network": [
+              "mobile"
+            ]
+          }
+        },
+        {
+          "name": "uas47",
+          "settings": {
+            "_id": 46,
+            "x": 950,
+            "y": 300,
+            "fill": "#1100FF",
+            "stroke": "black",
+            "strokeWidth": 0,
+            "shadowBlur": 1,
+            "shadowOffset": {
+              "x": 2,
+              "y": 2
+            },
+            "shadowOpacity": 0.2,
+            "opacity": 0.8,
+            "draggable": true,
+            "radius": 6,
+            "shadowColor": "black",
+            "type": "node",
+            "range": 150
+          },
+          "function": [
+            "/home/mace/Documents/utm/uas_client.py -t uas47"
+          ],
+          "type": "UAS",
+          "extra": {
+            "disks": "False",
+            "dump": {
+              "start": "False",
+              "delay": 10,
+              "duration": 100
+            },
+            "mobility": {
+              "model": "random_waypoint",
+              "zone_x": 1000,
+              "zone_y": 600,
+              "zone_z": 1000,
+              "velocity_upper": 5,
+              "velocity_lower": 2
+            },
+            "network": [
+              "mobile"
+            ]
+          }
+        },
+        {
+          "name": "uas48",
+          "settings": {
+            "_id": 47,
+            "x": 950,
+            "y": 300,
+            "fill": "#1100FF",
+            "stroke": "black",
+            "strokeWidth": 0,
+            "shadowBlur": 1,
+            "shadowOffset": {
+              "x": 2,
+              "y": 2
+            },
+            "shadowOpacity": 0.2,
+            "opacity": 0.8,
+            "draggable": true,
+            "radius": 6,
+            "shadowColor": "black",
+            "type": "node",
+            "range": 150
+          },
+          "function": [
+            "/home/mace/Documents/utm/uas_client.py -t uas48"
+          ],
+          "type": "UAS",
+          "extra": {
+            "disks": "False",
+            "dump": {
+              "start": "False",
+              "delay": 10,
+              "duration": 100
+            },
+            "mobility": {
+              "model": "random_waypoint",
+              "zone_x": 1000,
+              "zone_y": 600,
+              "zone_z": 1000,
+              "velocity_upper": 5,
+              "velocity_lower": 2
+            },
+            "network": [
+              "mobile"
+            ]
+          }
+        },
+        {
+          "name": "uas49",
+          "settings": {
+            "_id": 48,
+            "x": 950,
+            "y": 300,
+            "fill": "#1100FF",
+            "stroke": "black",
+            "strokeWidth": 0,
+            "shadowBlur": 1,
+            "shadowOffset": {
+              "x": 2,
+              "y": 2
+            },
+            "shadowOpacity": 0.2,
+            "opacity": 0.8,
+            "draggable": true,
+            "radius": 6,
+            "shadowColor": "black",
+            "type": "node",
+            "range": 150
+          },
+          "function": [
+            "/home/mace/Documents/utm/uas_client.py -t uas49"
+          ],
+          "type": "UAS",
+          "extra": {
+            "disks": "False",
+            "dump": {
+              "start": "False",
+              "delay": 10,
+              "duration": 100
+            },
+            "mobility": {
+              "model": "random_waypoint",
+              "zone_x": 1000,
+              "zone_y": 600,
+              "zone_z": 1000,
+              "velocity_upper": 5,
+              "velocity_lower": 2
+            },
+            "network": [
+              "mobile"
+            ]
+          }
+        },
+        {
+          "name": "uas50",
+          "settings": {
+            "_id": 49,
+            "x": 950,
+            "y": 300,
+            "fill": "#1100FF",
+            "stroke": "black",
+            "strokeWidth": 0,
+            "shadowBlur": 1,
+            "shadowOffset": {
+              "x": 2,
+              "y": 2
+            },
+            "shadowOpacity": 0.2,
+            "opacity": 0.8,
+            "draggable": true,
+            "radius": 6,
+            "shadowColor": "black",
+            "type": "node",
+            "range": 150
+          },
+          "function": [
+            "/home/mace/Documents/utm/uas_client.py -t uas50"
+          ],
+          "type": "UAS",
+          "extra": {
+            "disks": "False",
+            "dump": {
+              "start": "False",
+              "delay": 10,
+              "duration": 100
+            },
+            "mobility": {
+              "model": "random_waypoint",
+              "zone_x": 1000,
+              "zone_y": 600,
+              "zone_z": 1000,
+              "velocity_upper": 5,
+              "velocity_lower": 2
+            },
+            "network": [
+              "mobile"
+            ]
+          }
+        }
+      ]   
+}
+  

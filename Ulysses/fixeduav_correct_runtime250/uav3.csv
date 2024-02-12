@@ -1,0 +1,3 @@
+time;created;id;aircraft;position;vel;status;inspector_UAV;inspector_UAV_position
+1703094489340673;1703094488058414;0xe367b82a;wt5;[770, 770];0;OK;uav3;[570, 770]
+1703094498331278;1703094487889506;0x7a079d2e;wt4;[0, 770];0;OK;uav1;[300, 770]

@@ -1,0 +1,512 @@
+{
+  "nodes": [
+    {
+      "name": "uav0",
+      "settings": {
+        "_id": 0,
+        "x": 200,
+        "y": 100,
+        "fill": "#1100FF",
+        "stroke": "black",
+        "strokeWidth": 0,
+        "shadowBlur": 1,
+        "shadowOffset": {
+          "x": 2,
+          "y": 2
+        },
+        "shadowOpacity": 0.2,
+        "opacity": 0.8,
+        "draggable": true,
+        "radius": 6,
+        "shadowColor": "black",
+        "type": "node",
+        "range": 120
+      },
+      "type": "UTM",
+      "extra": {
+        "disks": "False",
+        "dump": {
+          "start": "False",
+          "delay": 35,
+          "duration": 15
+        },
+        "mobility": { "model": "random_waypoint",
+        "zone_x" : 300,
+        "zone_y" : 300,
+        "zone_z" : 300,
+        "velocity_upper" : 2.1,
+        "velocity_lower" : 2
+      },
+        "network": [
+          "fixed"
+        ]
+      },
+      "function": ["sleep 31 && cd /home/maxime/pymace_max/paxi/bin && xterm -hold -e ./client -log_level=info -transport tcp -id 1.1 -config config_11_40.json -log_dir /home/maxime/temp/node0/", "sleep 30 && cd /home/maxime/pymace_max/paxi/bin && xterm -hold -e ./server -transport tcp -id 1.1 -algorithm=paxos -config config_11_40.json -log_dir /home/maxime/temp/node0/"]
+    },
+    {
+      "name": "uav1",
+      "settings": {
+        "_id": 1,
+        "x": 198.66668701171875,
+        "y": 199,
+        "fill": "#1100FF",
+        "stroke": "black",
+        "strokeWidth": 0,
+        "shadowBlur": 1,
+        "shadowOffset": {
+          "x": 2,
+          "y": 2
+        },
+        "shadowOpacity": 0.2,
+        "opacity": 0.8,
+        "draggable": true,
+        "radius": 6,
+        "shadowColor": "black",
+        "type": "node",
+        "range": 120
+      },
+      "type": "UTM",
+      "extra": {
+        "disks": "False",
+        "dump": {
+          "start": "False",
+          "delay": 35,
+          "duration": 15
+        },
+        "mobility": { "model": "random_waypoint",
+        "zone_x" : 300,
+        "zone_y" : 300,
+        "zone_z" : 300,
+        "velocity_upper" : 2.1,
+        "velocity_lower" : 2
+      },
+        "network": [
+          "fixed"
+        ]
+      },
+      "function": ["sleep 30 && cd /home/maxime/pymace_max/paxi/bin && xterm -hold -e  ./server -transport tcp -id 1.2 -algorithm=paxos -config config_11_40.json -log_dir /home/maxime/temp/node1/"]
+    },
+    {
+      "name": "uav2",
+      "settings": {
+        "_id": 2,
+        "x": 198.66668701171875,
+        "y": 300,
+        "fill": "#1100FF",
+        "stroke": "black",
+        "strokeWidth": 0,
+        "shadowBlur": 1,
+        "shadowOffset": {
+          "x": 2,
+          "y": 2
+        },
+        "shadowOpacity": 0.2,
+        "opacity": 0.8,
+        "draggable": true,
+        "radius": 6,
+        "shadowColor": "black",
+        "type": "node",
+        "range": 120
+      },
+      "type": "UTM",
+      "extra": {
+        "disks": "False",
+        "dump": "False",
+        "mobility": { "model": "random_waypoint",
+        "zone_x" : 300,
+        "zone_y" : 300,
+        "zone_z" : 300,
+        "velocity_upper" : 2.1,
+        "velocity_lower" : 2
+      },
+        "network": [
+          "fixed"
+        ]
+      },
+      "function": ["sleep 30 && cd /home/maxime/pymace_max/paxi/bin && xterm -hold -e  ./server -transport tcp -id 1.3 -algorithm=paxos -config config_11_40.json -log_dir /home/maxime/temp/node2/"]
+    },
+    {
+      "name": "uav3",
+      "settings": {
+        "_id": 3,
+        "x": 301.66668701171875,
+        "y": 99,
+        "fill": "#1100FF",
+        "stroke": "black",
+        "strokeWidth": 0,
+        "shadowBlur": 1,
+        "shadowOffset": {
+          "x": 2,
+          "y": 2
+        },
+        "shadowOpacity": 0.2,
+        "opacity": 0.8,
+        "draggable": true,
+        "radius": 6,
+        "shadowColor": "black",
+        "type": "node",
+        "range": 120
+      },
+      "type": "UTM",
+      "extra": {
+        "disks": "False",
+        "dump": {
+          "start": "False",
+          "delay": 35,
+          "duration": 15
+        },
+        "mobility": { "model": "random_waypoint",
+        "zone_x" : 300,
+        "zone_y" : 300,
+        "zone_z" : 300,
+        "velocity_upper" : 2.1,
+        "velocity_lower" : 2
+      },
+        "network": [
+          "fixed"
+        ]
+      },
+      "function": ["sleep 30 && cd /home/maxime/pymace_max/paxi/bin && xterm -hold -e  ./server -transport tcp -id 1.4 -algorithm=paxos -config config_11_40.json -log_dir /home/maxime/temp/node3/"]
+    },
+    {
+      "name": "uav4",
+      "settings": {
+        "_id": 4,
+        "x": 299.66668701171875,
+        "y": 200,
+        "fill": "#1100FF",
+        "stroke": "black",
+        "strokeWidth": 0,
+        "shadowBlur": 1,
+        "shadowOffset": {
+          "x": 2,
+          "y": 2
+        },
+        "shadowOpacity": 0.2,
+        "opacity": 0.8,
+        "draggable": true,
+        "radius": 6,
+        "shadowColor": "black",
+        "type": "node",
+        "range": 120
+      },
+      "type": "UTM",
+      "extra": {
+        "disks": "False",
+        "dump": {
+          "start": "False",
+          "delay": 35,
+          "duration": 15
+        },
+        "mobility": { "model": "random_waypoint",
+        "zone_x" : 300,
+        "zone_y" : 300,
+        "zone_z" : 300,
+        "velocity_upper" : 2.1,
+        "velocity_lower" : 2
+      },
+        "network": [
+          "fixed"
+        ]
+      },
+      "function": ["sleep 30 && cd /home/maxime/pymace_max/paxi/bin && xterm -hold -e  ./server -transport tcp -id 1.5 -algorithm=paxos -config config_11_40.json -log_dir /home/maxime/temp/node4/"]
+    },
+    {
+      "name": "uav5",
+      "settings": {
+        "_id": 5,
+        "x": 299.66668701171875,
+        "y": 302,
+        "fill": "#1100FF",
+        "stroke": "black",
+        "strokeWidth": 0,
+        "shadowBlur": 1,
+        "shadowOffset": {
+          "x": 2,
+          "y": 2
+        },
+        "shadowOpacity": 0.2,
+        "opacity": 0.8,
+        "draggable": true,
+        "radius": 6,
+        "shadowColor": "black",
+        "type": "node",
+        "range": 120
+      },
+      "type": "UTM",
+      "extra": {
+        "disks": "False",
+        "dump": {
+          "start": "False",
+          "delay": 35,
+          "duration": 15
+        },
+        "mobility": { "model": "random_waypoint",
+        "zone_x" : 300,
+        "zone_y" : 300,
+        "zone_z" : 300,
+        "velocity_upper" : 2.1,
+        "velocity_lower" : 2
+      },
+        "network": [
+          "fixed"
+        ]
+      },
+      "function": ["sleep 30 && cd /home/maxime/pymace_max/paxi/bin && xterm -hold -e  ./server -transport tcp -id 1.6 -algorithm=paxos -config config_11_40.json -log_dir /home/maxime/temp/node5/"]
+    },
+    {
+      "name": "uav6",
+      "settings": {
+        "_id": 6,
+        "x": 400.66668701171875,
+        "y": 100,
+        "fill": "#1100FF",
+        "stroke": "black",
+        "strokeWidth": 0,
+        "shadowBlur": 1,
+        "shadowOffset": {
+          "x": 2,
+          "y": 2
+        },
+        "shadowOpacity": 0.2,
+        "opacity": 0.8,
+        "draggable": true,
+        "radius": 6,
+        "shadowColor": "black",
+        "type": "node",
+        "range": 120
+      },
+      "type": "UTM",
+      "extra": {
+        "disks": "False",
+        "dump": {
+          "start": "False",
+          "delay": 35,
+          "duration": 15
+        },
+        "mobility": { "model": "random_waypoint",
+        "zone_x" : 300,
+        "zone_y" : 300,
+        "zone_z" : 300,
+        "velocity_upper" : 2.1,
+        "velocity_lower" : 2
+      },
+        "network": [
+          "fixed"
+        ]
+      },
+      "function": ["sleep 30 && cd /home/maxime/pymace_max/paxi/bin && xterm -hold -e  ./server -transport tcp -id 1.7 -algorithm=paxos -config config_11_40.json -log_dir /home/maxime/temp/node6/"]
+    },
+    {
+      "name": "uav7",
+      "settings": {
+        "_id": 7,
+        "x": 400.66668701171875,
+        "y": 198,
+        "fill": "#1100FF",
+        "stroke": "black",
+        "strokeWidth": 0,
+        "shadowBlur": 1,
+        "shadowOffset": {
+          "x": 2,
+          "y": 2
+        },
+        "shadowOpacity": 0.2,
+        "opacity": 0.8,
+        "draggable": true,
+        "radius": 6,
+        "shadowColor": "black",
+        "type": "node",
+        "range": 120
+      },
+      "type": "UTM",
+      "extra": {
+        "disks": "False",
+        "dump": {
+          "start": "False",
+          "delay": 35,
+          "duration": 15
+        },
+        "mobility": { "model": "random_waypoint",
+        "zone_x" : 300,
+        "zone_y" : 300,
+        "zone_z" : 300,
+        "velocity_upper" : 2.1,
+        "velocity_lower" : 2
+      },
+        "network": [
+          "fixed"
+        ]
+      },
+      "function": ["sleep 30 && cd /home/maxime/pymace_max/paxi/bin && xterm -hold -e  ./server -transport tcp -id 1.8 -algorithm=paxos -config config_11_40.json -log_dir /home/maxime/temp/node7/"]
+    },
+    {
+      "name": "uav8",
+      "settings": {
+        "_id": 8,
+        "x": 399.66668701171875,
+        "y": 300,
+        "fill": "#1100FF",
+        "stroke": "black",
+        "strokeWidth": 0,
+        "shadowBlur": 1,
+        "shadowOffset": {
+          "x": 2,
+          "y": 2
+        },
+        "shadowOpacity": 0.2,
+        "opacity": 0.8,
+        "draggable": true,
+        "radius": 6,
+        "shadowColor": "black",
+        "type": "node",
+        "range": 120
+      },
+      "type": "UTM",
+      "extra": {
+        "disks": "False",
+        "dump": {
+          "start": "False",
+          "delay": 35,
+          "duration": 15
+        },
+        "mobility": { "model": "random_waypoint",
+        "zone_x" : 300,
+        "zone_y" : 300,
+        "zone_z" : 300,
+        "velocity_upper" : 2.1,
+        "velocity_lower" : 2
+      },
+        "network": [
+          "fixed"
+        ]
+      },
+      "function": ["sleep 30 && cd /home/maxime/pymace_max/paxi/bin && xterm -hold -e  ./server -transport tcp -id 1.9 -algorithm=paxos -config config_11_40.json -log_dir /home/maxime/temp/node8/"]
+    },
+    {
+      "name": "uav9",
+      "settings": {
+        "_id": 9,
+        "x": 400.66668701171875,
+        "y": 169,
+        "fill": "#1100FF",
+        "stroke": "black",
+        "strokeWidth": 0,
+        "shadowBlur": 1,
+        "shadowOffset": {
+          "x": 2,
+          "y": 2
+        },
+        "shadowOpacity": 0.2,
+        "opacity": 0.8,
+        "draggable": true,
+        "radius": 6,
+        "shadowColor": "black",
+        "type": "node",
+        "range": 120
+      },
+      "type": "UTM",
+      "extra": {
+        "disks": "False",
+        "dump": {
+          "start": "False",
+          "delay": 35,
+          "duration": 15
+        },
+        "mobility": { "model": "random_waypoint",
+        "zone_x" : 300,
+        "zone_y" : 300,
+        "zone_z" : 300,
+        "velocity_upper" : 2.1,
+        "velocity_lower" : 2
+      },
+        "network": [
+          "fixed"
+        ]
+      },
+      "function": ["sleep 30 && cd /home/maxime/pymace_max/paxi/bin && xterm -hold -e  ./server -transport tcp -id 1.10 -algorithm=paxos -config config_11_40.json -log_dir /home/maxime/temp/node9/"]
+    },
+    {
+      "name": "uav10",
+      "settings": {
+        "_id": 10,
+        "x": 399.66668701171875,
+        "y": 369,
+        "fill": "#1100FF",
+        "stroke": "black",
+        "strokeWidth": 0,
+        "shadowBlur": 1,
+        "shadowOffset": {
+          "x": 2,
+          "y": 2
+        },
+        "shadowOpacity": 0.2,
+        "opacity": 0.8,
+        "draggable": true,
+        "radius": 6,
+        "shadowColor": "black",
+        "type": "node",
+        "range": 120
+      },
+      "type": "UTM",
+      "extra": {
+        "disks": "False",
+        "dump": {
+          "start": "False",
+          "delay": 35,
+          "duration": 15
+        },
+        "mobility": { "model": "random_waypoint",
+        "zone_x" : 300,
+        "zone_y" : 300,
+        "zone_z" : 300,
+        "velocity_upper" : 2.1,
+        "velocity_lower" : 2
+      },
+        "network": [
+          "fixed"
+        ]
+      },
+      "function": ["sleep 30 && cd /home/maxime/pymace_max/paxi/bin && xterm -hold -e  ./server -transport tcp -id 1.11 -algorithm=paxos -config config_11_40.json -log_dir /home/maxime/temp/node10/"]
+    }
+  ],
+  "settings": {
+    "omnet": "False",
+    "core": "True",
+    "dump": "False",
+    "number_of_nodes": 9,
+    "start_delay": 5,
+    "username": "maxime",
+    "disks_folder": "/mnt/pymace/",
+    "report_folder": "/home/maxime/temp/reports/",
+    "runtime": 150
+  },
+  "networks": [
+    {
+      "name": "fixed",
+      "prefix": "10.0.0.0/24",
+      "routing": "batman",
+      "settings": {
+        "range": "160",
+        "bandwidth": "433000000",
+        "delay": "3000",
+        "jitter": "0",
+        "error": "0",
+        "emane": "False"
+      }
+    },
+    {
+      "name" : "mobile",
+      "prefix" : "10.1.0.0/24",
+      "routing": "batman",
+      "settings": {
+          "range": "160",
+          "bandwidth": "433300000",
+          "delay": "3000",
+          "jitter": "0",
+          "error": "0",
+          "emane": "False"
+      }
+    }
+  ]
+}

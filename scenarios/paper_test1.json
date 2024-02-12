@@ -1,0 +1,449 @@
+{
+    "settings": {
+        "omnet": "False",
+        "core": "True",
+        "dump": {
+                "start" : "False",
+                "delay" : 35,
+                "duration": 15
+              },
+        "number_of_nodes": 9,
+        "start_delay": 5,
+        "username": "bruno",
+        "disks_folder" : "/mnt/pymace/",
+        "report_folder" : "/home/mace/temp/reports/",
+        "runtime": 85,
+        "emane_location": [47.57917, -122.13232, 2.0],
+        "emane_scale": 150
+    },
+    "networks": [
+        {
+            "name" : "mobile",
+            "prefix" : "10.1.0.0/24",
+            "routing": "batman",
+            "settings": {
+                "range": "160",
+                "bandwidth": "433300000",
+                "delay": "3000",
+                "jitter": "0",
+                "error": "0",
+                "emane": "False"
+            }
+        }
+    ],
+    "nodes": [
+        {
+            "name" : "client",
+            "settings":   {
+                "_id": 0,
+                "x": 120.066650390625,
+                "y": 80,
+                "fill": "#1100FF",
+                "stroke": "black",
+                "strokeWidth": 0,
+                "shadowBlur": 1,
+                "shadowOffset": {
+                  "x": 2,
+                  "y": 2
+                },
+                "shadowOpacity": 0.2,
+                "opacity": 0.8,
+                "draggable": true,
+                "radius": 6,
+                "shadowColor": "black",
+                "type": "node",
+                "range": 100
+            },
+            "function" : ["sleep 30 && xterm -hold -e timeout 40s /home/mace/Downloads/libpaxos/build/sample/client /home/mace/Downloads/libpaxos/paxos.conf -f 50"],
+            "type": "Tower",
+            "extra": {
+                "disks": "False",
+                "dump": {
+                "start" : "False",
+                "delay" : 35,
+                "duration": 15
+              },
+                "mobility": "none",
+                "network": ["mobile"]
+            }
+        },
+        {
+            "name" : "acceptor0",
+            "settings":   {
+                "_id": 1,
+                "x": 295.066650390625,
+                "y": 86,
+                "fill": "#1100FF",
+                "stroke": "black",
+                "strokeWidth": 0,
+                "shadowBlur": 1,
+                "shadowOffset": {
+                  "x": 2,
+                  "y": 2
+                },
+                "shadowOpacity": 0.2,
+                "opacity": 0.8,
+                "draggable": true,
+                "radius": 6,
+                "shadowColor": "black",
+                "type": "node",
+                "range": 100
+            },
+            "function" : ["sleep 30 && xterm -hold -e timeout 40s /home/mace/Downloads/libpaxos/build/sample/acceptor 0 /home/mace/Downloads/libpaxos/paxos.conf"],
+            "type": "Tower",
+            "extra": {
+                "disks": "False",
+                "dump": {
+                "start" : "False",
+                "delay" : 35,
+                "duration": 15
+              },
+                "mobility": "none",
+                "network": ["mobile"]
+            }
+        },
+        {
+            "name" : "acceptor1",
+            "settings":   {
+                "_id": 2,
+                "x": 490.066650390625,
+                "y": 233,
+                "fill": "#1100FF",
+                "stroke": "black",
+                "strokeWidth": 0,
+                "shadowBlur": 1,
+                "shadowOffset": {
+                  "x": 2,
+                  "y": 2
+                },
+                "shadowOpacity": 0.2,
+                "opacity": 0.8,
+                "draggable": true,
+                "radius": 6,
+                "shadowColor": "black",
+                "type": "node",
+                "range": 100
+            },
+            "function" : ["sleep 30 && xterm -hold -e timeout 40s /home/mace/Downloads/libpaxos/build/sample/acceptor 1 /home/mace/Downloads/libpaxos/paxos.conf"],
+            "type": "Tower",
+            "extra": {
+                "disks": "False",
+                "dump": {
+                "start" : "False",
+                "delay" : 35,
+                "duration": 15
+              },
+                "mobility": "none",
+                "network": ["mobile"]
+            }
+        },{
+            "name" : "acceptor2",
+            "settings":   {
+                "_id": 3,
+                "x": 600.066650390625,
+                "y": 91,
+                "fill": "#1100FF",
+                "stroke": "black",
+                "strokeWidth": 0,
+                "shadowBlur": 1,
+                "shadowOffset": {
+                  "x": 2,
+                  "y": 2
+                },
+                "shadowOpacity": 0.2,
+                "opacity": 0.8,
+                "draggable": true,
+                "radius": 6,
+                "shadowColor": "black",
+                "type": "node",
+                "range": 100
+            },
+            "function" : ["sleep 30 && xterm -hold -e timeout 40s /home/mace/Downloads/libpaxos/build/sample/acceptor 2 /home/mace/Downloads/libpaxos/paxos.conf"],
+            "type": "Tower",
+            "extra": {
+                "disks": "False",
+                "dump": {
+                "start" : "False",
+                "delay" : 35,
+                "duration": 15
+              },
+                "mobility": "none",
+                "network": ["mobile"]
+            }
+        },{
+            "name" : "acceptor3",
+            "settings":   {
+                "_id": 4,
+                "x": 386.066650390625,
+                "y": 98,
+                "fill": "#1100FF",
+                "stroke": "black",
+                "strokeWidth": 0,
+                "shadowBlur": 1,
+                "shadowOffset": {
+                  "x": 2,
+                  "y": 2
+                },
+                "shadowOpacity": 0.2,
+                "opacity": 0.8,
+                "draggable": true,
+                "radius": 6,
+                "shadowColor": "black",
+                "type": "node",
+                "range": 100
+            },
+            "function" : ["sleep 30 && xterm -hold -e timeout 40s /home/mace/Downloads/libpaxos/build/sample/acceptor 3 /home/mace/Downloads/libpaxos/paxos.conf"],
+            "type": "Tower",
+            "extra": {
+                "disks": "False",
+                "dump": {
+                "start" : "False",
+                "delay" : 35,
+                "duration": 15
+              },
+                "mobility": "none",
+                "network": ["mobile"]
+            }
+        },{
+            "name" : "acceptor4",
+            "settings":   {
+                "_id": 5,
+                "x": 366.066650390625,
+                "y": 244,
+                "fill": "#1100FF",
+                "stroke": "black",
+                "strokeWidth": 0,
+                "shadowBlur": 1,
+                "shadowOffset": {
+                  "x": 2,
+                  "y": 2
+                },
+                "shadowOpacity": 0.2,
+                "opacity": 0.8,
+                "draggable": true,
+                "radius": 6,
+                "shadowColor": "black",
+                "type": "node",
+                "range": 100
+            },
+            "function" : ["sleep 30 && xterm -hold -e timeout 40s /home/mace/Downloads/libpaxos/build/sample/acceptor 4 /home/mace/Downloads/libpaxos/paxos.conf"],
+            "type": "Tower",
+            "extra": {
+                "disks": "False",
+                "dump": {
+                "start" : "False",
+                "delay" : 35,
+                "duration": 15
+              },
+                "mobility": "none",
+                "network": ["mobile"]
+            }
+        },{
+            "name" : "acceptor5",
+            "settings":   {
+                "_id": 6,
+                "x": 250.066650390625,
+                "y": 347,
+                "fill": "#1100FF",
+                "stroke": "black",
+                "strokeWidth": 0,
+                "shadowBlur": 1,
+                "shadowOffset": {
+                  "x": 2,
+                  "y": 2
+                },
+                "shadowOpacity": 0.2,
+                "opacity": 0.8,
+                "draggable": true,
+                "radius": 6,
+                "shadowColor": "black",
+                "type": "node",
+                "range": 100
+            },
+            "function" : ["sleep 30 && xterm -hold -e timeout 40s /home/mace/Downloads/libpaxos/build/sample/acceptor 5 /home/mace/Downloads/libpaxos/paxos.conf"],
+            "type": "Tower",
+            "extra": {
+                "disks": "False",
+                "dump": {
+                "start" : "False",
+                "delay" : 35,
+                "duration": 15
+              },
+                "mobility": "none",
+                "network": ["mobile"]
+            }
+        },{
+            "name" : "acceptor6",
+            "settings":   {
+                "_id": 7,
+                "x": 111.066650390625,
+                "y": 250,
+                "fill": "#1100FF",
+                "stroke": "black",
+                "strokeWidth": 0,
+                "shadowBlur": 1,
+                "shadowOffset": {
+                  "x": 2,
+                  "y": 2
+                },
+                "shadowOpacity": 0.2,
+                "opacity": 0.8,
+                "draggable": true,
+                "radius": 6,
+                "shadowColor": "black",
+                "type": "node",
+                "range": 100
+            },
+            "function" : ["sleep 30 && xterm -hold -e timeout 40s /home/mace/Downloads/libpaxos/build/sample/acceptor 6 /home/mace/Downloads/libpaxos/paxos.conf"],
+            "type": "Tower",
+            "extra": {
+                "disks": "False",
+                "dump": {
+                "start" : "False",
+                "delay" : 35,
+                "duration": 15
+              },
+                "mobility": "none",
+                "network": ["mobile"]
+            }
+        },{
+            "name" : "acceptor7",
+            "settings":   {
+                "_id": 8,
+                "x": 240.066650390625,
+                "y": 212,
+                "fill": "#1100FF",
+                "stroke": "black",
+                "strokeWidth": 0,
+                "shadowBlur": 1,
+                "shadowOffset": {
+                  "x": 2,
+                  "y": 2
+                },
+                "shadowOpacity": 0.2,
+                "opacity": 0.8,
+                "draggable": true,
+                "radius": 6,
+                "shadowColor": "black",
+                "type": "node",
+                "range": 100
+            },
+            "function" : ["sleep 30 && xterm -hold -e timeout 40s /home/mace/Downloads/libpaxos/build/sample/acceptor 7 /home/mace/Downloads/libpaxos/paxos.conf"],
+            "type": "Tower",
+            "extra": {
+                "disks": "False",
+                "dump": {
+                "start" : "False",
+                "delay" : 35,
+                "duration": 15
+              },
+                "mobility": "none",
+                "network": ["mobile"]
+            }
+        },{
+            "name" : "acceptor8",
+            "settings":   {
+                "_id": 9,
+                "x": 602,
+                "y": 296,
+                "fill": "#1100FF",
+                "stroke": "black",
+                "strokeWidth": 0,
+                "shadowBlur": 1,
+                "shadowOffset": {
+                  "x": 2,
+                  "y": 2
+                },
+                "shadowOpacity": 0.2,
+                "opacity": 0.8,
+                "draggable": true,
+                "radius": 6,
+                "shadowColor": "black",
+                "type": "node",
+                "range": 100
+            },
+            "function" : ["sleep 30 && xterm -hold -e timeout 40s /home/mace/Downloads/libpaxos/build/sample/acceptor 8 /home/mace/Downloads/libpaxos/paxos.conf"],
+            "type": "Tower",
+            "extra": {
+                "disks": "False",
+                "dump": {
+                "start" : "False",
+                "delay" : 35,
+                "duration": 15
+              },
+                "mobility": "none",
+                "network": ["mobile"]
+            }
+        },{
+            "name" : "acceptor9",
+            "settings":   {
+                "_id": 10,
+                "x": 580,
+                "y": 182,
+                "fill": "#1100FF",
+                "stroke": "black",
+                "strokeWidth": 0,
+                "shadowBlur": 1,
+                "shadowOffset": {
+                  "x": 2,
+                  "y": 2
+                },
+                "shadowOpacity": 0.2,
+                "opacity": 0.8,
+                "draggable": true,
+                "radius": 6,
+                "shadowColor": "black",
+                "type": "node",
+                "range": 100
+            },
+            "function" : ["sleep 30 && xterm -hold -e timeout 40s /home/mace/Downloads/libpaxos/build/sample/acceptor 9 /home/mace/Downloads/libpaxos/paxos.conf"],
+            "type": "Tower",
+            "extra": {
+                "disks": "False",
+                "dump": {
+                "start" : "False",
+                "delay" : 35,
+                "duration": 15
+              },
+                "mobility": "none",
+                "network": ["mobile"]
+            }
+        },
+        {
+            "name" : "proposer",
+            "settings":   {
+                "_id": 11,
+                "x": 100,
+                "y": 100,
+                "fill": "#1100FF",
+                "stroke": "black",
+                "strokeWidth": 0,
+                "shadowBlur": 1,
+                "shadowOffset": {
+                  "x": 2,
+                  "y": 2
+                },
+                "shadowOpacity": 0.2,
+                "opacity": 0.8,
+                "draggable": true,
+                "radius": 6,
+                "shadowColor": "black",
+                "type": "node",
+                "range": 100
+            },
+            "function" : ["sleep 30 && xterm -hold -e timeout 40s /home/mace/Downloads/libpaxos/build/sample/proposer 0 /home/mace/Downloads/libpaxos/paxos.conf"],
+            "type": "Tower",
+            "extra": {
+                "disks": "False",
+                "dump": {
+                "start" : "False",
+                "delay" : 35,
+                "duration": 15
+              },
+                "mobility": "none",
+                "network": ["mobile"]
+            }
+        }
+    ]   
+}
+  
