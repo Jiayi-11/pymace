@@ -44,8 +44,6 @@ class UTMServer():
   """
   Inspected_windTurbines= {} #to store the windturbines ids that were inspected i.e. its data was collected
   
-
-  
   def __init__(self, tag, timer):
     """UTMServer UAS endpoint
 
@@ -74,8 +72,6 @@ class UTMServer():
       print("the uav has perfect battery ")
     print(self.tag, "self.battery ", self.timer)
    
-    print(self.calculate_distance(0, 0, 1, 2))
-
     self._setup()
     while int(time.time()) < (self.start + self.timer):  #Ulysses Replacement
      #while (int(time.time()) < (self.start + self.battery)) and  (int(time.time()) < (self.start + self.timer)):
@@ -100,22 +96,10 @@ class UTMServer():
     
     self.data_bank = []
     self.report_file = open("/home/mace/pymace/reports/wind_farm/" + self.tag + ".csv","w")
-    #self.report_file.write('time;created;id;aircraft;position;vel;status;inspector_UAV;inspector_UAV_position\n')
-    self.report_file.write('time;inspected_WT;inspected_WT_position;inspector_UAV;inspector_UAV_position\n')
+    self.report_file.write('time;created;id;aircraft;position;vel;status;inspector_UAV;inspector_UAV_position\n')
 
     #Ulysses Additions
-    #self.coordinates_wt = [(0, 0), (770, 0), (1540, 0), (0, 770), (770, 770), (1540, 770), (0, 1540), (770, 1540), (1540, 1540)]
-    self.wt_coordinates = {
-        "wt1": (0, 0),  
-        "wt2": (770, 0),  
-        "wt3": (1540, 0),
-        "wt4": (0, 770),
-        "wt5": (770, 770),
-        "wt6": (1540, 770),
-        "wt7": (0, 1540),
-        "wt8": (770, 1540),
-        "wt9": (1540, 1540)  
-    }
+    self.coordinates_wt = [(0, 0), (770, 0), (1540, 0), (0, 770), (770, 770), (1540, 770), (0, 1540), (770, 1540), (1540, 1540)]
 
 
     self.visited_wt=0
@@ -130,7 +114,7 @@ class UTMServer():
     logging.getLogger('apscheduler.executors.default').propagate = False
     self.scheduler.start()
     self.scheduler.add_job(self.uav_position_update, 'interval', seconds = self.interval, id="uav_position_update", args=[])
-    #self.set_uav_status("OK")
+    self.set_uav_status("OK")
     self.set_uav_position([0,0])
     #self.set_velocity = 0
     self.gps = GPSBridge(self.tag)
@@ -139,82 +123,70 @@ class UTMServer():
 
 
     self.utm_interface = network_sockets.TcpPersistent(self.utm_packet_handler, debug=False, port=55555, interface='')
-    self.uas_interface = network_sockets.UdpInterface(self.uas_packet_handler, debug=False, port=44444, interface='')
+    #self.uas_interface = network_sockets.UdpInterface(self.uas_packet_handler, debug=False, port=44444, interface='')
     self.utm_interface.start()
-    self.uas_interface.start()
+    #self.uas_interface.start()
     #try:
     self.etcd = etcd3.client()
     print("Testing etcd object content",self.etcd)
-
-    #Ulysses adding
-    #self.compare_distances()
-    self.scheduler.add_job(self.compare_distances, 'interval', seconds = 5, id="compare_distances", args=[])
-
     self.etcd.add_watch_callback('wt', self.etcd_callback, range_end='wt999')
     #except:
     #  logging.info("Running UTM server without etcd")
 
-    
 
 
   #Ulysses adding
-  def calculate_distance(self, x1, y1, x2, y2):
+  def calculate_distance(x1, y1, x2, y2):
     """
     Calculate the Euclidean distance between two points
     """
     return math.sqrt((x2 - x1)**2 + (y2 - y1)**2)
+  
 
-
-
-  def compare_distances(self):
+  def compare_distances(self, coordinates_uav, coordinates_wt):
     """
     Compare the distance of coordinates_uav to a series of coordinates_wt.
     If the distance is less than 5, print the message.
     
     """
-    #x1, y1 = coordinates_wt
+    x1, y1 = coordinates_wt
     coordinates_uav = self.get_uav_position()
-    print("the coordinates of", self.tag, "is", coordinates_uav)
-    x2, y2, _ = coordinates_uav
+    print(coordinates_uav)
+    x2, y2 = coordinates_uav
 
-    for aircraft_id, (x1, y1) in self.wt_coordinates.items():
+    for point in coordinates_wt:
         distance = self.calculate_distance(x1, y1, x2, y2)
-        print(f"The distance between {self.tag} and wind turbine {aircraft_id} is {distance}m.")
+        print(distance)
 
         if distance < 500:
-            print(f"The distance between {self.tag} and wind turbine {aircraft_id} is less than 500m.")
-            #try:
-            #  payload = pickle.loads(payload)
-            #except:
-            #  logging.error("UTMServer>utm_packet_handler>Received invalid UDP packet")
+            print("The distance between", self.tag, "and wind turbine is less than 5m.")
+            try:
+              payload = pickle.loads(payload)
+            except:
+              logging.error("UTMServer>utm_packet_handler>Received invalid UDP packet")
 
-            #unique_id = payload[0]
+            unique_id = payload[0]
 
-            #created = payload[1][0]
-            #aircraft_id = payload[1][1]
-            #position = payload[1][2]
-            #velocity = payload[1][3]
-            #status = payload[1][4]
+            created = payload[1][0]
+            aircraft_id = payload[1][1]
+            position = payload[1][2]
+            velocity = payload[1][3]
+            status = payload[1][4]
             inspector = self.tag
             inspector_position = self.get_uav_position()
 
-            data = json.dumps({
-            #                   "created" : created,
-            #                   "msg-id" : unique_id,
-            #                   "position" : position,
-            #                   "velocity" : velocity,
-            #                   "status" : status,
-                               "inspected_WT" : aircraft_id,
-                               "inspected_WT_position" : (x1, y1), 
+            data = json.dumps({"created" : created,
+                               "msg-id" : unique_id,
+                               "position" : position,
+                               "velocity" : velocity,
+                               "status" : status,
                                "inspector_UAV" : inspector,
                                "inspector_UAV_position" : inspector_position,
             })
             
             self.write_to_etcd(aircraft_id, data)
-            print("write_to_etcd is called")
 
-  #End of Ulysses  
-
+  #End of Ulysses
 
 
   def etcd_callback(self, _event):
@@ -236,20 +208,16 @@ class UTMServer():
 
         data = json.loads(aircraft_data)
 
-        #unique_id = data['msg-id']
+        unique_id = data['msg-id']
         aircraft_id = event.key.decode()
-        #position = data['position']
-        #velocity = data['velocity']
-        #status = data['status']
-        #created = data['created']
-        
-        inspected_WT_position = data['inspected_WT_position']
-        inspector_UAV = data['inspector_UAV']
+        position = data['position']
+        velocity = data['velocity']
+        status = data['status']
+        created = data['created']
+        inspector_UAV= data['inspector_UAV']
         inspector_UAV_position = data['inspector_UAV_position']
-        #data = str(int(time.time()*1000000)) + ";" + str(created) + ";" + str(unique_id) + ";" + str(aircraft_id) + ";" + str(inspected_WT_position)+ ";" +str(inspector_UAV) + ";" + str(inspector_UAV_position)
-        data = str(int(time.time()*1000000)) + ";" + str(aircraft_id) + ";" + str(inspected_WT_position)+ ";" +str(inspector_UAV) + ";" + str(inspector_UAV_position)
-        print("Data got from etcd is saving: ", data)
-
+        data = str(int(time.time()*1000000)) + ";" + str(created) + ";" + str(unique_id) + ";" + str(aircraft_id) + ";" + str(position)+ ";" + str(velocity)+ ";" + str(status)+ ";"+str(inspector_UAV) +  ";" + str(inspector_UAV_position)
+       
         self.save_historic(data)
     except:
       logging.error("UTMServer>etcd_callback>Error getting data from ETCD")
@@ -467,11 +435,8 @@ class UTMServer():
     """
     pass
 
-
-
   def uas_packet_handler(self, payload, sender_ip, connection):
-
-    """
+    """ 
     UAS packet handler
     Called when data arrives on UAS endpoint
 
@@ -483,8 +448,8 @@ class UTMServer():
 
     Returns
     --------
-    
-    
+
+    """
     try:
       payload = pickle.loads(payload)
     except:
@@ -519,10 +484,6 @@ class UTMServer():
       #UTMServer.Inspected_windTurbines[aircraft_id]= self.tag
       #print("This is the list of read windturbines: ",UTMServer.Inspected_windTurbines)
     self.write_to_etcd(aircraft_id, data)
-    """ 
-    pass
-
-
 
   def write_to_etcd(self, aircraft_id, data):
     """ 
@@ -543,12 +504,12 @@ class UTMServer():
      #if !(self.tag="uav1" and int(time.time()*1000000)>2):
      if self.etcd.get(aircraft_id)==(None,None):
        try:
-           print("We are trying to write", aircraft_id, "to ETCD" )
+           print("We are trying to write", aircraft_id, " to ETCD" )
       
            #data+= ";" + str(self.tag)
            print(data)
            #data=data+";" + str(self.tag)
-           #print(data)
+           print(data)
            self.etcd.put(aircraft_id, data)
           
            #if( len(list(self.etcd.get_all()))==9):
@@ -575,9 +536,6 @@ class UTMServer():
         pass
 
 #######################Class END###############################################################################################
-
-
-
 
 def parse_args():
   """ 
@@ -619,11 +577,8 @@ if __name__ == '__main__':
   logging.info("Starting UTM server")
   args = parse_args()
   try:
-    
     UTMServer(args.tag, 100)
-
   except KeyboardInterrupt:
     logging.info("Exiting UTM Server")
-
 
 

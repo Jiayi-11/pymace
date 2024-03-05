@@ -147,8 +147,7 @@ class UTMServer():
     print("Testing etcd object content",self.etcd)
 
     #Ulysses adding
-    #self.compare_distances()
-    self.scheduler.add_job(self.compare_distances, 'interval', seconds = 5, id="compare_distances", args=[])
+    self.compare_distances()
 
     self.etcd.add_watch_callback('wt', self.etcd_callback, range_end='wt999')
     #except:
@@ -175,7 +174,7 @@ class UTMServer():
     #x1, y1 = coordinates_wt
     coordinates_uav = self.get_uav_position()
     print("the coordinates of", self.tag, "is", coordinates_uav)
-    x2, y2, _ = coordinates_uav
+    x2, y2 = coordinates_uav
 
     for aircraft_id, (x1, y1) in self.wt_coordinates.items():
         distance = self.calculate_distance(x1, y1, x2, y2)
@@ -619,11 +618,8 @@ if __name__ == '__main__':
   logging.info("Starting UTM server")
   args = parse_args()
   try:
-    
     UTMServer(args.tag, 100)
-
   except KeyboardInterrupt:
     logging.info("Exiting UTM Server")
-
 
 
