@@ -49,8 +49,8 @@
             "name" : "uav1",
             "settings":   {
                 "_id": 0,
-                "x": 1,
-                "y": 1,
+                "x": 149.67,
+                "y": 151,
                 "fill": "#1100FF",
                 "stroke": "black",
                 "strokeWidth": 0,
@@ -77,11 +77,11 @@
                   "duration": 100
                 },
                 "mobility": { "model": "randomwaypoint",
-                              "zone_x" : 3000,
-                              "zone_y" : 2200,
-                              "zone_z" : 1,
-                              "velocity_upper" : 10.1,
-                              "velocity_lower" : 10
+                              "zone_x" : 600,
+                              "zone_y" : 600,
+                              "zone_z" : 600,
+                              "velocity_upper" : 50.1,
+                              "velocity_lower" : 50
                             },
                 "network": ["fixed", "mobile"]
             }
@@ -90,8 +90,8 @@
             "name" : "uav2",
             "settings": {
                 "_id": 1,
-                "x": 1,
-                "y": 1,
+                "x": 350.667,
+                "y": 250,
                 "fill": "#1100FF",
                 "stroke": "black",
                 "strokeWidth": 0,
@@ -118,11 +118,11 @@
                   "duration": 100
                 },
                 "mobility": { "model": "randomwaypoint",
-                              "zone_x" : 3000,
-                              "zone_y" : 2200,
-                              "zone_z" : 1,
-                              "velocity_upper" : 10.1,
-                              "velocity_lower" : 10
+                              "zone_x" : 600,
+                              "zone_y" : 600,
+                              "zone_z" : 600,
+                              "velocity_upper" : 5.1,
+                              "velocity_lower" : 5
                             },
                 "network": ["fixed", "mobile"]
             }
@@ -131,8 +131,8 @@
             "name" : "uav3",
             "settings": {
                 "_id": 2,
-                "x": 1,
-                "y": 1,
+                "x": 498.66668701171875,
+                "y": 101,
                 "fill": "#1100FF",
                 "stroke": "black",
                 "strokeWidth": 0,
@@ -159,11 +159,11 @@
                   "duration": 100
                 },
                 "mobility": { "model": "randomwaypoint",
-                              "zone_x" : 3000,
-                              "zone_y" : 2200,
-                              "zone_z" : 1,
-                              "velocity_upper" : 10.1,
-                              "velocity_lower" : 10
+                              "zone_x" : 600,
+                              "zone_y" : 600,
+                              "zone_z" : 600,
+                              "velocity_upper" : 5.1,
+                              "velocity_lower" : 5
                             },
                 "network": ["fixed", "mobile"]
             }

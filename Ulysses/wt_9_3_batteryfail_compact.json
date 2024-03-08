@@ -77,11 +77,11 @@
                   "duration": 100
                 },
                 "mobility": { "model": "randomwaypoint",
-                              "zone_x" : 3000,
-                              "zone_y" : 2200,
+                              "zone_x" : 1700,
+                              "zone_y" : 1100,
                               "zone_z" : 1,
-                              "velocity_upper" : 10.1,
-                              "velocity_lower" : 10
+                              "velocity_upper" : 5.1,
+                              "velocity_lower" : 5
                             },
                 "network": ["fixed", "mobile"]
             }
@@ -118,11 +118,11 @@
                   "duration": 100
                 },
                 "mobility": { "model": "randomwaypoint",
-                              "zone_x" : 3000,
-                              "zone_y" : 2200,
+                              "zone_x" : 1700,
+                              "zone_y" : 1100,
                               "zone_z" : 1,
-                              "velocity_upper" : 10.1,
-                              "velocity_lower" : 10
+                              "velocity_upper" : 5.1,
+                              "velocity_lower" : 5
                             },
                 "network": ["fixed", "mobile"]
             }
@@ -159,11 +159,11 @@
                   "duration": 100
                 },
                 "mobility": { "model": "randomwaypoint",
-                              "zone_x" : 3000,
-                              "zone_y" : 2200,
+                              "zone_x" : 1700,
+                              "zone_y" : 1100,
                               "zone_z" : 1,
-                              "velocity_upper" : 10.1,
-                              "velocity_lower" : 10
+                              "velocity_upper" : 5.1,
+                              "velocity_lower" : 5
                             },
                 "network": ["fixed", "mobile"]
             }
@@ -172,8 +172,8 @@
             "name" : "wt1",
             "settings": {
                 "_id": 3,
-                "x": 500,
-                "y": 500,
+                "x": 100,
+                "y": 100,
                 "fill": "#1100FF",
                 "stroke": "black",
                 "strokeWidth": 0,
@@ -207,8 +207,8 @@
             "name" : "wt2",
             "settings": {
                 "_id": 4,
-                "x": 1500,
-                "y": 500,
+                "x": 850,
+                "y": 100,
                 "fill": "#1100FF",
                 "stroke": "black",
                 "strokeWidth": 0,
@@ -242,8 +242,8 @@
             "name" : "wt3",
             "settings": {
                 "_id": 5,
-                "x": 2500,
-                "y": 500,
+                "x": 1600,
+                "y": 100,
                 "fill": "#1100FF",
                 "stroke": "black",
                 "strokeWidth": 0,
@@ -277,8 +277,8 @@
             "name" : "wt4",
             "settings": {
                 "_id": 6,
-                "x": 500,
-                "y": 1100,
+                "x": 100,
+                "y": 550,
                 "fill": "#1100FF",
                 "stroke": "black",
                 "strokeWidth": 0,
@@ -312,8 +312,8 @@
             "name" : "wt5",
             "settings": {
                 "_id": 7,
-                "x": 1500,
-                "y": 1100,
+                "x": 850,
+                "y": 550,
                 "fill": "#1100FF",
                 "stroke": "black",
                 "strokeWidth": 0,
@@ -348,8 +348,8 @@
             "name" : "wt6",
             "settings": {
                 "_id": 8,
-                "x": 2500,
-                "y": 1100,
+                "x": 1600,
+                "y": 550,
                 "fill": "#1100FF",
                 "stroke": "black",
                 "strokeWidth": 0,
@@ -383,8 +383,8 @@
             "name" : "wt7",
             "settings": {
                 "_id": 9,
-                "x": 500,
-                "y": 1700,
+                "x": 100,
+                "y": 1000,
                 "fill": "#1100FF",
                 "stroke": "black",
                 "strokeWidth": 0,
@@ -419,8 +419,8 @@
             "name" : "wt8",
             "settings": {
                 "_id": 10,
-                "x": 1500,
-                "y": 1700,
+                "x": 850,
+                "y": 1000,
                 "fill": "#1100FF",
                 "stroke": "black",
                 "strokeWidth": 0,
@@ -454,8 +454,8 @@
             "name" : "wt9",
             "settings": {
                 "_id": 11,
-                "x": 2500,
-                "y": 1700,
+                "x": 1600,
+                "y": 1000,
                 "fill": "#1100FF",
                 "stroke": "black",
                 "strokeWidth": 0,

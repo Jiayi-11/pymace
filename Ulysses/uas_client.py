@@ -74,13 +74,13 @@ class UASClient():
     self.timer = 300
     self.skip = False
     #print("uas_client> Current working directory: {0}".format(os.getcwd()))
-    self.report_file = open("/home/mace/pymace/reports/wind_farm/" + self.tag + ".csv","w")
-    self.report_file.write('time;created;id;aircraft;position;vel;status\n')
+    #self.report_file = open("/home/mace/pymace/reports/wind_farm/" + self.tag + ".csv","w")
+    #self.report_file.write('time;created;id;aircraft;position;vel;status\n')
     self.scheduler = BackgroundScheduler(timezone=str(tzlocal.get_localzone()))
     #logging.getLogger('apscheduler').setLevel(logging.ERROR)
     logging.getLogger('apscheduler.executors.default').propagate = False
     self.scheduler.start()
-    self.scheduler.add_job(self.adsb_broadcaster, 'interval', seconds = self.interval, id="adsb_broadcaster", args=[])
+    #self.scheduler.add_job(self.adsb_broadcaster, 'interval', seconds = self.interval, id="adsb_broadcaster", args=[])
     self.uas_interface = network_sockets.UdpInterface(self.uas_packet_handler, debug=False, port=44444, interface='')
     self.uas_interface.start()
     self.set_status("OK")

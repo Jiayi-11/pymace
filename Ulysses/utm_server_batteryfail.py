@@ -74,7 +74,7 @@ class UTMServer():
       print("the uav has perfect battery ")
     print(self.tag, "self.battery ", self.timer)
    
-    print(self.calculate_distance(0, 0, 1, 2))
+    #print(self.calculate_distance(0, 0, 1, 2))
 
     self._setup()
     while int(time.time()) < (self.start + self.timer):  #Ulysses Replacement
@@ -101,20 +101,20 @@ class UTMServer():
     self.data_bank = []
     self.report_file = open("/home/mace/pymace/reports/wind_farm/" + self.tag + ".csv","w")
     #self.report_file.write('time;created;id;aircraft;position;vel;status;inspector_UAV;inspector_UAV_position\n')
-    self.report_file.write('time;inspected_WT;inspected_WT_position;inspector_UAV;inspector_UAV_position\n')
+    self.report_file.write('time;inspected_WT;inspected_WT_position;inspector_UAV;inspector_UAV_position;distance\n')
 
     #Ulysses Additions
     #self.coordinates_wt = [(0, 0), (770, 0), (1540, 0), (0, 770), (770, 770), (1540, 770), (0, 1540), (770, 1540), (1540, 1540)]
     self.wt_coordinates = {
-        "wt1": (0, 0),  
-        "wt2": (770, 0),  
-        "wt3": (1540, 0),
-        "wt4": (0, 770),
-        "wt5": (770, 770),
-        "wt6": (1540, 770),
-        "wt7": (0, 1540),
-        "wt8": (770, 1540),
-        "wt9": (1540, 1540)  
+        "wt1": (500, 500),  
+        "wt2": (1500, 500),  
+        "wt3": (2500, 500),
+        "wt4": (500, 1100),
+        "wt5": (1500, 1100),
+        "wt6": (2500, 1100),
+        "wt7": (500, 1700),
+        "wt8": (1500, 1700),
+        "wt9": (2500, 1700)  
     }
 
 
@@ -174,15 +174,15 @@ class UTMServer():
     """
     #x1, y1 = coordinates_wt
     coordinates_uav = self.get_uav_position()
-    print("the coordinates of", self.tag, "is", coordinates_uav)
+    #print("the coordinates of", self.tag, "is", coordinates_uav)
     x2, y2, _ = coordinates_uav
 
     for aircraft_id, (x1, y1) in self.wt_coordinates.items():
         distance = self.calculate_distance(x1, y1, x2, y2)
-        print(f"The distance between {self.tag} and wind turbine {aircraft_id} is {distance}m.")
+        #print(f"The distance between {self.tag} and wind turbine {aircraft_id} is {distance}m.")
 
-        if distance < 500:
-            print(f"The distance between {self.tag} and wind turbine {aircraft_id} is less than 500m.")
+        if distance < 80:
+            #print(f"The distance between {self.tag} and wind turbine {aircraft_id} is less than 500m.")
             #try:
             #  payload = pickle.loads(payload)
             #except:
@@ -208,10 +208,11 @@ class UTMServer():
                                "inspected_WT_position" : (x1, y1), 
                                "inspector_UAV" : inspector,
                                "inspector_UAV_position" : inspector_position,
+                               "distance" : distance,
             })
             
             self.write_to_etcd(aircraft_id, data)
-            print("write_to_etcd is called")
+            #print("write_to_etcd is called")
 
   #End of Ulysses  
 
@@ -246,9 +247,10 @@ class UTMServer():
         inspected_WT_position = data['inspected_WT_position']
         inspector_UAV = data['inspector_UAV']
         inspector_UAV_position = data['inspector_UAV_position']
+        distance = data['distance']
         #data = str(int(time.time()*1000000)) + ";" + str(created) + ";" + str(unique_id) + ";" + str(aircraft_id) + ";" + str(inspected_WT_position)+ ";" +str(inspector_UAV) + ";" + str(inspector_UAV_position)
-        data = str(int(time.time()*1000000)) + ";" + str(aircraft_id) + ";" + str(inspected_WT_position)+ ";" +str(inspector_UAV) + ";" + str(inspector_UAV_position)
-        print("Data got from etcd is saving: ", data)
+        data = str(int(time.time()*1000000)) + ";" + str(aircraft_id) + ";" + str(inspected_WT_position)+ ";" +str(inspector_UAV) + ";" + str(inspector_UAV_position) + ";" + str(distance)
+        #print("Data got from etcd is saving: ", data)
 
         self.save_historic(data)
     except:
