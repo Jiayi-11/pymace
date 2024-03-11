@@ -67,7 +67,7 @@
                 "type": "node",
                 "range": 350
             },
-            "function" : [ "disk", "etcd" , "/home/mace/pymace/Ulysses/utm_server_batteryfail.py -t uav1"],
+            "function" : [ "disk", "etcd" , "/home/mace/pymace/Ulysses/utm_server_baseline1.py -t uav1"],
             "type": "UTM",
             "extra": {
                 "disks": "False",
@@ -108,7 +108,7 @@
                 "type": "node",
                 "range": 250
               },
-            "function" :  ["disk", "etcd" , "/home/mace/pymace/Ulysses/utm_server_batteryfail.py -t uav2"],
+            "function" :  ["disk", "etcd" , "/home/mace/pymace/Ulysses/utm_server_baseline1.py -t uav2"],
             "type": "UTM",
             "extra": {
                 "disks": "False",
@@ -149,7 +149,7 @@
                 "type": "node",
                 "range": 250
               },
-            "function" : ["disk", "etcd" , "/home/mace/pymace/Ulysses/utm_server_batteryfail.py -t uav3"],
+            "function" : ["disk", "etcd" , "/home/mace/pymace/Ulysses/utm_server_baseline1.py -t uav3"],
             "type": "UTM",
             "extra": {
                 "disks": "False",

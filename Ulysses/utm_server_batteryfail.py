@@ -32,6 +32,7 @@ import network_sockets
 import tzlocal
 from apscheduler.schedulers.background import BackgroundScheduler
 from gps_bridge import GPSBridge
+import subprocess
 
 class UTMServer():
   """
@@ -105,20 +106,30 @@ class UTMServer():
 
     #Ulysses Additions
     #self.coordinates_wt = [(0, 0), (770, 0), (1540, 0), (0, 770), (770, 770), (1540, 770), (0, 1540), (770, 1540), (1540, 1540)]
+    #self.wt_coordinates = {
+    #    "wt1": (500, 500),  
+    #    "wt2": (1500, 500),  
+    #    "wt3": (2500, 500),
+    #    "wt4": (500, 1100),
+    #    "wt5": (1500, 1100),
+    #    "wt6": (2500, 1100),
+    #    "wt7": (500, 1700),
+    #    "wt8": (1500, 1700),
+    #    "wt9": (2500, 1700)  
+    #}
     self.wt_coordinates = {
-        "wt1": (500, 500),  
-        "wt2": (1500, 500),  
-        "wt3": (2500, 500),
-        "wt4": (500, 1100),
-        "wt5": (1500, 1100),
-        "wt6": (2500, 1100),
-        "wt7": (500, 1700),
-        "wt8": (1500, 1700),
-        "wt9": (2500, 1700)  
+        "wt1": (100, 100),  
+        "wt2": (850, 100),  
+        "wt3": (1600, 100),
+        "wt4": (100, 550),
+        "wt5": (850, 550),
+        "wt6": (1600, 550),
+        "wt7": (100, 1000),
+        "wt8": (850, 1000),
+        "wt9": (1600, 1000)  
     }
 
-
-    self.visited_wt=0
+    self.visited_wt = 0
     self.flying_distance=0
     self.previous_position=[0,0]
     self.position_skip = False
@@ -154,10 +165,10 @@ class UTMServer():
     #except:
     #  logging.info("Running UTM server without etcd")
 
+
     
+  #Ulysses adding for compare the distance to decide if the UAV is inspecting one WT
 
-
-  #Ulysses adding
   def calculate_distance(self, x1, y1, x2, y2):
     """
     Calculate the Euclidean distance between two points
@@ -247,9 +258,10 @@ class UTMServer():
         inspected_WT_position = data['inspected_WT_position']
         inspector_UAV = data['inspector_UAV']
         inspector_UAV_position = data['inspector_UAV_position']
-        distance = data['distance']
+        inspecting_distance = data['distance']
+
         #data = str(int(time.time()*1000000)) + ";" + str(created) + ";" + str(unique_id) + ";" + str(aircraft_id) + ";" + str(inspected_WT_position)+ ";" +str(inspector_UAV) + ";" + str(inspector_UAV_position)
-        data = str(int(time.time()*1000000)) + ";" + str(aircraft_id) + ";" + str(inspected_WT_position)+ ";" +str(inspector_UAV) + ";" + str(inspector_UAV_position) + ";" + str(distance)
+        data = str(int(time.time()*1000000)) + ";" + str(aircraft_id) + ";" + str(inspected_WT_position)+ ";" +str(inspector_UAV) + ";" + str(inspector_UAV_position) + ";" + str(inspecting_distance)
         #print("Data got from etcd is saving: ", data)
 
         self.save_historic(data)
@@ -613,6 +625,63 @@ def set_logging():
   logger.setLevel(logging.INFO)
   logging.basicConfig(level='INFO')
 
+#Ulysses adding for checking the communication overhead
+def capture_communication_overhead():
+  
+  commands = [
+      "cat /sys/class/net/veth1.0.1/statistics/rx_packets",
+      #"cat /sys/class/net/veth1.0.1/statistics/tx_packets",
+      #"cat /sys/class/net/veth2.0.1/statistics/rx_packets",
+      #"cat /sys/class/net/veth2.0.1/statistics/tx_packets",
+      #"cat /sys/class/net/veth3.0.1/statistics/rx_packets",
+      #"cat /sys/class/net/veth3.0.1/statistics/tx_packets",
+      "cat /sys/class/net/lo/statistics/rx_packets "
+
+  ]
+  
+  results = {}
+  for command in commands:
+      key = command.split("/")[5] + "_" + command.split("/")[-1]
+      try:
+          result = subprocess.run(command, shell=True, capture_output=True, text=True, check=True)
+          # 解析命令以用作字典键
+          key = command.split("/")[5] + "_" + command.split("/")[-1]
+          # 将成功执行的命令输出（转换为整数）添加到结果字典
+          results[key] = int(result.stdout.strip())
+      except subprocess.CalledProcessError as e:
+          # 如果命令执行失败，添加错误信息
+          results[key] = f"Error executing {command}: {e.stderr.strip()}"
+  # 返回所有命令的执行结果
+  return results
+
+
+def calculate_traffic_difference(initial_results, final_results):
+  # 计算两个结果集之间的差异
+  difference_results = {}
+  for key in initial_results:
+      if key in final_results:
+          # 确保只有在两个结果集中都有相同键时才计算差异
+          try:
+              difference = final_results[key] - initial_results[key]
+              difference_results[key] = difference
+          except TypeError:
+              # 如果结果集中包含错误信息，跳过该键
+              difference_results[key] = "Error in calculation"
+      else:
+          difference_results[key] = "Key not found in final results"
+  return difference_results   
+
+
+def save_results_to_file(results, filename):
+  # 将结果保存到文件
+  with open(filename, "w") as file:
+      for key, value in results.items():
+          file.write(f"{key} traffic change: {value}\n")
+  print(f"Results saved to {filename}")
+
+
+
+
 ###########################Runner ################################################################################################
 
 
@@ -621,8 +690,18 @@ if __name__ == '__main__':
   logging.info("Starting UTM server")
   args = parse_args()
   try:
+    filename = "/home/mace/pymace/reports/wind_farm/communication_overhead_results.txt" 
+    #print("communication overhead file is created")
+    #time.sleep(20)
+    print("after 10s")
+    initial_results = capture_communication_overhead()
+    print(initial_results)
     
     UTMServer(args.tag, 100)
+   
+    final_results = capture_communication_overhead()
+    traffic_difference = calculate_traffic_difference(initial_results, final_results)
+    save_results_to_file(traffic_difference, filename)
 
   except KeyboardInterrupt:
     logging.info("Exiting UTM Server")
