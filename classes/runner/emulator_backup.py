@@ -171,22 +171,11 @@ class Emulator(Runner):
   def run(self):
     """Runs the emulation of a heterogeneous scenario
     """
-
     #Setup and Start core
     if self.scenario == None:
       logging.error("Load scenario before")
       return
     self.setup_core()
-
-
-
-    ###Ulysses adding
-    print("before: the beginning of run")
-    filename = "/home/mace/pymace/reports/wind_farm/communication_overhead_results.txt" 
-    initial_results = self.capture_communication_overhead()
-    print(initial_results)
-
-
 
     #Setup mobility
     self.scenario.configure_mobility(self.session)
@@ -210,14 +199,6 @@ class Emulator(Runner):
       time.sleep(0.1)
 
     print("#################################################STOP###################################################")
-    
-    ###Ulysses adding
-    print("after: the end of run")
-    final_results = self.capture_communication_overhead()
-    traffic_difference = self.calculate_traffic_difference(initial_results, final_results)
-    self.save_results_to_file(traffic_difference, filename)
-
-
 
     if not self.daemon_mode: 
       # shutdown session
@@ -241,56 +222,3 @@ class Emulator(Runner):
       #self.try_to_clean()
 
 
-  #Ulysses adding for checking the communication overhead
-  def capture_communication_overhead(self):
-    
-    commands = [
-        "cat /sys/class/net/veth1.0.1/statistics/rx_packets",
-        "cat /sys/class/net/veth1.0.1/statistics/tx_packets",
-        "cat /sys/class/net/veth2.0.1/statistics/rx_packets",
-        "cat /sys/class/net/veth2.0.1/statistics/tx_packets",
-        "cat /sys/class/net/veth3.0.1/statistics/rx_packets",
-        "cat /sys/class/net/veth3.0.1/statistics/tx_packets",
-        #"cat /sys/class/net/lo/statistics/rx_packets "
-  
-    ]
-    
-    results = {}
-    for command in commands:
-        key = command.split("/")[5] + "_" + command.split("/")[-1]
-        try:
-            result = subprocess.run(command, shell=True, capture_output=True, text=True, check=True)
-            # 解析命令以用作字典键
-            key = command.split("/")[5] + "_" + command.split("/")[-1]
-            # 将成功执行的命令输出（转换为整数）添加到结果字典
-            results[key] = int(result.stdout.strip())
-        except subprocess.CalledProcessError as e:
-            # 如果命令执行失败，添加错误信息
-            results[key] = f"Error executing {command}: {e.stderr.strip()}"
-    # 返回所有命令的执行结果
-    return results
-  
-  
-  def calculate_traffic_difference(self, initial_results, final_results):
-    # 计算两个结果集之间的差异
-    difference_results = {}
-    for key in initial_results:
-        if key in final_results:
-            # 确保只有在两个结果集中都有相同键时才计算差异
-            try:
-                difference = final_results[key] - initial_results[key]
-                difference_results[key] = difference
-            except TypeError:
-                # 如果结果集中包含错误信息，跳过该键
-                difference_results[key] = "Error in calculation"
-        else:
-            difference_results[key] = "Key not found in final results"
-    return difference_results   
-  
-  
-  def save_results_to_file(self, results, filename):
-    # 将结果保存到文件
-    with open(filename, "w") as file:
-        for key, value in results.items():
-            file.write(f"{key} traffic change: {value}\n")
-    print(f"Results saved to {filename}")   

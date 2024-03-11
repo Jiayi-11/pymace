@@ -690,18 +690,18 @@ if __name__ == '__main__':
   logging.info("Starting UTM server")
   args = parse_args()
   try:
-    filename = "/home/mace/pymace/reports/wind_farm/communication_overhead_results.txt" 
+    #filename = "/home/mace/pymace/reports/wind_farm/communication_overhead_results.txt" 
     #print("communication overhead file is created")
     #time.sleep(20)
-    print("after 10s")
-    initial_results = capture_communication_overhead()
-    print(initial_results)
+    #print("after 10s")
+    #initial_results = capture_communication_overhead()
+    #print(initial_results)
     
     UTMServer(args.tag, 100)
    
-    final_results = capture_communication_overhead()
-    traffic_difference = calculate_traffic_difference(initial_results, final_results)
-    save_results_to_file(traffic_difference, filename)
+    #final_results = capture_communication_overhead()
+    #traffic_difference = calculate_traffic_difference(initial_results, final_results)
+    #save_results_to_file(traffic_difference, filename)
 
   except KeyboardInterrupt:
     logging.info("Exiting UTM Server")
