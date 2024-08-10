@@ -1,0 +1,490 @@
+{
+    "settings": {
+        "omnet": "False",
+        "core": "True",
+        "dump": {
+          "start" : "False",
+          "delay" : 10,
+          "duration": 100
+        },
+        "number_of_nodes": 9,
+        "start_delay": 5,
+        "username": "mace",
+        "disks_folder" : "/mnt/pymace/",
+        "report_folder" : "/home/mace/pymace/reports/wind_farm/results_temp/",
+        "runtime": 14450,
+        "emane_location": [47.57917, -122.13232, 2.0],
+        "emane_scale": 150
+    },
+    "networks": [
+        {
+          "name" : "fixed",
+          "prefix" : "10.0.0.0/24",
+          "routing": "batman",
+          "settings": {
+              "range": "300",
+              "bandwidth": "150000",
+              "delay": "1000",
+              "jitter": "0",
+              "error": "0",
+              "emane": "False"
+          }
+      },
+      {
+          "name" : "mobile",
+          "prefix" : "12.0.0.0/24",
+          "routing": "none",
+          "settings": {
+              "range": "300",
+              "bandwidth": "150000",
+              "delay": "1000",
+              "jitter": "0",
+              "error": "0",
+              "emane": "False"
+            }
+        }  
+    ],
+    "nodes": [
+        {
+            "name" : "uav1",
+            "settings":   {
+                "_id": 0,
+                "x": 1141,
+                "y": 514,
+                "fill": "#1100FF",
+                "stroke": "black",
+                "strokeWidth": 0,
+                "shadowBlur": 1,
+                "shadowOffset": {
+                  "x": 2,
+                  "y": 2
+                },
+                "shadowOpacity": 0.2,
+                "opacity": 0.8,
+                "draggable": true,
+                "radius": 6,
+                "shadowColor": "black",
+                "type": "node",
+                "range": 350
+            },
+            "function" : [ "disk", "/home/mace/pymace/Ulysses/utm_server_baseline2.py -t uav1"],
+            "type": "UTM",
+            "extra": {
+                "disks": "False",
+                "dump": {
+                  "start" : "False",
+                  "delay" : 10,
+                  "duration": 100
+                },
+                "mobility": { "model": "randomwaypoint",
+                              "zone_x" : 1400,
+                              "zone_y" : 900,
+                              "zone_z" : 1,
+                              "velocity_upper" : 5.1,
+                              "velocity_lower" : 5
+                            },
+                "network": ["fixed", "mobile"]
+            }
+        },
+        {
+            "name" : "uav2",
+            "settings": {
+                "_id": 1,
+                "x": 1141,
+                "y": 514,
+                "fill": "#1100FF",
+                "stroke": "black",
+                "strokeWidth": 0,
+                "shadowBlur": 1,
+                "shadowOffset": {
+                  "x": 2,
+                  "y": 2
+                },
+                "shadowOpacity": 0.2,
+                "opacity": 0.8,
+                "draggable": true,
+                "radius": 6,
+                "shadowColor": "black",
+                "type": "node",
+                "range": 250
+              },
+            "function" :  ["disk", "/home/mace/pymace/Ulysses/utm_server_baseline2.py -t uav2"],
+            "type": "UTM",
+            "extra": {
+                "disks": "False",
+                "dump": {
+                  "start" : "False",
+                  "delay" : 10,
+                  "duration": 100
+                },
+                "mobility": { "model": "randomwaypoint",
+                              "zone_x" : 1400,
+                              "zone_y" : 900,
+                              "zone_z" : 1,
+                              "velocity_upper" : 5.1,
+                              "velocity_lower" : 5
+                            },
+                "network": ["fixed", "mobile"]
+            }
+        },
+        {
+            "name" : "uav3",
+            "settings": {
+                "_id": 2,
+                "x": 1141,
+                "y": 514,
+                "fill": "#1100FF",
+                "stroke": "black",
+                "strokeWidth": 0,
+                "shadowBlur": 1,
+                "shadowOffset": {
+                  "x": 2,
+                  "y": 2
+                },
+                "shadowOpacity": 0.2,
+                "opacity": 0.8,
+                "draggable": true,
+                "radius": 6,
+                "shadowColor": "black",
+                "type": "node",
+                "range": 250
+              },
+            "function" : ["disk",  "/home/mace/pymace/Ulysses/utm_server_baseline2.py -t uav3"],
+            "type": "UTM",
+            "extra": {
+                "disks": "False",
+                "dump": {
+                  "start" : "False",
+                  "delay" : 10,
+                  "duration": 100
+                },
+                "mobility": { "model": "randomwaypoint",
+                              "zone_x" : 1400,
+                              "zone_y" : 900,
+                              "zone_z" : 1,
+                              "velocity_upper" : 5.1,
+                              "velocity_lower" : 5
+                            },
+                "network": ["fixed", "mobile"]
+            }
+        },
+        {
+            "name" : "wt1",
+            "settings": {
+                "_id": 3,
+                "x": 100,
+                "y": 100,
+                "fill": "#1100FF",
+                "stroke": "black",
+                "strokeWidth": 0,
+                "shadowBlur": 1,
+                "shadowOffset": {
+                  "x": 2,
+                  "y": 2
+                },
+                "shadowOpacity": 0.2,
+                "opacity": 0.8,
+                "draggable": true,
+                "radius": 6,
+                "shadowColor": "black",
+                "type": "node",
+                "range": 150
+              },
+            "function" : ["/home/mace/pymace/Ulysses/uas_client.py -t wt1"],
+            "type": "UAS",
+            "extra": {
+                "disks": "False",
+                "dump": {
+                  "start" : "False",
+                  "delay" : 10,
+                  "duration": 100
+                },
+                "mobility": "none",
+                "network": ["mobile"]
+            }
+        },
+        {
+            "name" : "wt2",
+            "settings": {
+                "_id": 4,
+                "x": 700,
+                "y": 100,
+                "fill": "#1100FF",
+                "stroke": "black",
+                "strokeWidth": 0,
+                "shadowBlur": 1,
+                "shadowOffset": {
+                  "x": 2,
+                  "y": 2
+                },
+                "shadowOpacity": 0.2,
+                "opacity": 0.8,
+                "draggable": true,
+                "radius": 6,
+                "shadowColor": "black",
+                "type": "node",
+                "range": 150
+              },
+            "function" : ["/home/mace/pymace/Ulysses/uas_client.py -t wt2"],
+            "type": "UAS",
+            "extra": {
+                "disks": "False",
+                "dump": {
+                  "start" : "False",
+                  "delay" : 10,
+                  "duration": 100
+                },
+                "mobility": "none",
+                "network": ["mobile"]
+            }
+        },
+        {
+            "name" : "wt3",
+            "settings": {
+                "_id": 5,
+                "x": 1300,
+                "y": 100,
+                "fill": "#1100FF",
+                "stroke": "black",
+                "strokeWidth": 0,
+                "shadowBlur": 1,
+                "shadowOffset": {
+                  "x": 2,
+                  "y": 2
+                },
+                "shadowOpacity": 0.2,
+                "opacity": 0.8,
+                "draggable": true,
+                "radius": 6,
+                "shadowColor": "black",
+                "type": "node",
+                "range": 150
+              },
+            "function" : ["/home/mace/pymace/Ulysses/uas_client.py -t wt3"],
+            "type": "UAS",
+            "extra": {
+                "disks": "False",
+                "dump": {
+                  "start" : "False",
+                  "delay" : 10,
+                  "duration": 100
+                },
+                "mobility": "none",
+                "network": ["mobile"]
+            }
+        },
+        {
+            "name" : "wt4",
+            "settings": {
+                "_id": 6,
+                "x": 100,
+                "y": 460,
+                "fill": "#1100FF",
+                "stroke": "black",
+                "strokeWidth": 0,
+                "shadowBlur": 1,
+                "shadowOffset": {
+                  "x": 2,
+                  "y": 2
+                },
+                "shadowOpacity": 0.2,
+                "opacity": 0.8,
+                "draggable": true,
+                "radius": 6,
+                "shadowColor": "black",
+                "type": "node",
+                "range": 150
+              },
+            "function" : ["/home/mace/pymace/Ulysses/uas_client.py -t wt4"],
+            "type": "UAS",
+            "extra": {
+                "disks": "False",
+                "dump": {
+                  "start" : "False",
+                  "delay" : 10,
+                  "duration": 100
+                },
+                "mobility": "none",
+                "network": ["mobile"]
+            }
+        },
+        {
+            "name" : "wt5",
+            "settings": {
+                "_id": 7,
+                "x": 700,
+                "y": 460,
+                "fill": "#1100FF",
+                "stroke": "black",
+                "strokeWidth": 0,
+                "shadowBlur": 1,
+                "shadowOffset": {
+                  "x": 2,
+                  "y": 2
+                },
+                "shadowOpacity": 0.2,
+                "opacity": 0.8,
+                "draggable": true,
+                "radius": 6,
+                "shadowColor": "black",
+                "type": "node",
+                "range": 150
+              },
+            "function" : ["/home/mace/pymace/Ulysses/uas_client.py -t wt5"],
+            "type": "UAS",
+            "extra": {
+                "disks": "False",
+                "dump": {
+                  "start" : "False",
+                  "delay" : 10,
+                  "duration": 100
+                },
+                "mobility": "none",
+                "network": ["mobile"]
+            }
+        }
+        ,
+        {
+            "name" : "wt6",
+            "settings": {
+                "_id": 8,
+                "x": 1300,
+                "y": 460,
+                "fill": "#1100FF",
+                "stroke": "black",
+                "strokeWidth": 0,
+                "shadowBlur": 1,
+                "shadowOffset": {
+                  "x": 2,
+                  "y": 2
+                },
+                "shadowOpacity": 0.2,
+                "opacity": 0.8,
+                "draggable": true,
+                "radius": 6,
+                "shadowColor": "black",
+                "type": "node",
+                "range": 150
+              },
+            "function" : ["/home/mace/pymace/Ulysses/uas_client.py -t wt6"],
+            "type": "UAS",
+            "extra": {
+                "disks": "False",
+                "dump": {
+                  "start" : "False",
+                  "delay" : 10,
+                  "duration": 100
+                },
+                "mobility": "none",
+                "network": ["mobile"]
+            }
+        },
+        {
+            "name" : "wt7",
+            "settings": {
+                "_id": 9,
+                "x": 100,
+                "y": 820,
+                "fill": "#1100FF",
+                "stroke": "black",
+                "strokeWidth": 0,
+                "shadowBlur": 1,
+                "shadowOffset": {
+                  "x": 2,
+                  "y": 2
+                },
+                "shadowOpacity": 0.2,
+                "opacity": 0.8,
+                "draggable": true,
+                "radius": 6,
+                "shadowColor": "black",
+                "type": "node",
+                "range": 150
+              },
+            "function" : ["/home/mace/pymace/Ulysses/uas_client.py -t wt7"],
+            "type": "UAS",
+            "extra": {
+                "disks": "False",
+                "dump": {
+                  "start" : "False",
+                  "delay" : 10,
+                  "duration": 100
+                },
+                "mobility": "none",
+                "network": ["mobile"]
+            }
+        }
+        ,
+        {
+            "name" : "wt8",
+            "settings": {
+                "_id": 10,
+                "x": 700,
+                "y": 820,
+                "fill": "#1100FF",
+                "stroke": "black",
+                "strokeWidth": 0,
+                "shadowBlur": 1,
+                "shadowOffset": {
+                  "x": 2,
+                  "y": 2
+                },
+                "shadowOpacity": 0.2,
+                "opacity": 0.8,
+                "draggable": true,
+                "radius": 6,
+                "shadowColor": "black",
+                "type": "node",
+                "range": 150
+              },
+            "function" : ["/home/mace/pymace/Ulysses/uas_client.py -t wt8"],
+            "type": "UAS",
+            "extra": {
+                "disks": "False",
+                "dump": {
+                  "start" : "False",
+                  "delay" : 10,
+                  "duration": 100
+                },
+                "mobility": "none",
+                "network": ["mobile"]
+            }
+        },
+        {
+            "name" : "wt9",
+            "settings": {
+                "_id": 11,
+                "x": 1300,
+                "y": 820,
+                "fill": "#1100FF",
+                "stroke": "black",
+                "strokeWidth": 0,
+                "shadowBlur": 1,
+                "shadowOffset": {
+                  "x": 2,
+                  "y": 2
+                },
+                "shadowOpacity": 0.2,
+                "opacity": 0.8,
+                "draggable": true,
+                "radius": 6,
+                "shadowColor": "black",
+                "type": "node",
+                "range": 150
+              },
+            "function" : ["/home/mace/pymace/Ulysses/uas_client.py -t wt9"],
+            "type": "UAS",
+            "extra": {
+                "disks": "False",
+                "dump": {
+                  "start" : "False",
+                  "delay" : 10,
+                  "duration": 100
+                },
+                "mobility": "none",
+                "network": ["mobile"]
+            }
+        }
+    ]   
+}
+  

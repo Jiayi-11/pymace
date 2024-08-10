@@ -32,12 +32,16 @@ from classes.mobility import mobility
 from classes.nodes.fixed_node import FixedNode
 from classes.scenario.scenario import Scenario
 
+
 class Emulator(Runner):
   """_summary_
 
   Args:
       Runner (_type_): _description_
   """
+
+
+
   def __init__(self, daemon):
     """_summary_
 
@@ -57,6 +61,7 @@ class Emulator(Runner):
     self.try_to_clean()
     self.coreemu = CoreEmu()
     #self.setup(scenario)
+    
 
   def setup(self, scenario_config):
     """_summary_
@@ -172,73 +177,88 @@ class Emulator(Runner):
     """Runs the emulation of a heterogeneous scenario
     """
 
-    #Setup and Start core
-    if self.scenario == None:
-      logging.error("Load scenario before")
-      return
-    self.setup_core()
-
-
-
     ###Ulysses adding
-    print("before: the beginning of run")
-    filename = "/home/mace/pymace/reports/wind_farm/communication_overhead_results.txt" 
-    initial_results = self.capture_communication_overhead()
-    print(initial_results)
-
-
-
-    #Setup mobility
-    self.scenario.configure_mobility(self.session)
-
-    #start dumps
-    #if self.scenario.dump:
-      #get simdir
-    simdir = str(time.localtime().tm_year) + "_" + str(time.localtime().tm_mon) + "_" + str(time.localtime().tm_mday) + "_" + str(time.localtime().tm_hour) + "_" + str(time.localtime().tm_min)
-
-    self.scenario.tcpdump(self.session, simdir)
-
-    #Start socketio thread
-    sthread = threading.Thread(target=self.server_thread, args=())
-    sthread.start()
-
-    #Start routing and applications
-    self.scenario.start_routing(self.session)
-    self.scenario.start_applications(self.session)
-
-    while self.scenario.running:
-      time.sleep(0.1)
-
-    print("#################################################STOP###################################################")
+    filename = "/home/mace/pymace/reports/wind_farm/results_temp/uav_communication_overhead_results.txt" 
+    
+    try:
+        #Setup and Start core
+        if self.scenario == None:
+          logging.error("Load scenario before")
+          return
+        self.setup_core()
+    
+    
+        ###Ulysses adding
+        print("before: the beginning of run")
+        initial_results = self.capture_communication_overhead()
+        print(initial_results)
+    
+    
+    
+        #Setup mobility
+        self.scenario.configure_mobility(self.session)
+    
+        #start dumps
+        #if self.scenario.dump:
+          #get simdir
+        simdir = str(time.localtime().tm_year) + "_" + str(time.localtime().tm_mon) + "_" + str(time.localtime().tm_mday) + "_" + str(time.localtime().tm_hour) + "_" + str(time.localtime().tm_min)
+    
+        self.scenario.tcpdump(self.session, simdir)
+    
+        #Start socketio thread
+        sthread = threading.Thread(target=self.server_thread, args=())
+        sthread.start()
+    
+        #Start routing and applications
+        self.scenario.start_routing(self.session)
+        self.scenario.start_applications(self.session)
+    
+        while self.scenario.running:
+          time.sleep(0.1)
     
     ###Ulysses adding
-    print("after: the end of run")
-    final_results = self.capture_communication_overhead()
-    traffic_difference = self.calculate_traffic_difference(initial_results, final_results)
-    self.save_results_to_file(traffic_difference, filename)
 
-
-
-    if not self.daemon_mode: 
-      # shutdown session
-      logging.info("Simulation finished. Killing all processes")
-      requests.get('http://localhost:5000/sim/stop')
-
-      sthread.join()
-      self.session.shutdown()
-
-      try:
-        self.killsim()
-        os.system("sudo killall xterm")
-        os.system("chown -R " + self.scenario.username + ":" + self.scenario.username + " ./reports")
-      except:
+    except KeyboardInterrupt:
         pass
-    else:
-      self.running = False
-      sthread.join()
-      self.coreemu.shutdown()
-      self.scenario = None
-      #self.try_to_clean()
+        # Capture communication overhead when the program is interrupted
+        #print("Interrupted: capturing current communication overhead before exiting")
+        #current_results = self.capture_communication_overhead()
+        #print("current_results:",current_results)
+        #traffic_difference, totals = self.calculate_traffic_difference(initial_results, current_results)
+        #self.save_results_to_file(traffic_difference, totals, filename)
+
+    finally:
+    
+        print("#################################################STOP###################################################")
+                
+        print("after: the end of run")
+        final_results = self.capture_communication_overhead()
+        print("finally_results:", final_results)
+        traffic_difference, totals = self.calculate_traffic_difference(initial_results, final_results)
+        self.save_results_to_file(traffic_difference, totals, filename)
+    
+    ###Ulysses adding finished
+    
+        if not self.daemon_mode: 
+          # shutdown session
+          logging.info("Simulation finished. Killing all processes")
+          requests.get('http://localhost:5000/sim/stop')
+    
+          sthread.join()
+          self.session.shutdown()
+    
+          try:
+              self.killsim()
+              os.system("sudo killall xterm")
+              os.system("chown -R " + self.scenario.username + ":" + self.scenario.username + " ./reports")
+          except:
+              pass
+        else:
+          self.running = False
+          sthread.join()
+          self.coreemu.shutdown()
+          self.scenario = None
+          #self.try_to_clean()
 
 
   #Ulysses adding for checking the communication overhead
@@ -257,11 +277,12 @@ class Emulator(Runner):
     
     results = {}
     for command in commands:
-        key = command.split("/")[5] + "_" + command.split("/")[-1]
+        # 生成键值，如veth1.0.1_rx_packets
+        key = command.split("/")[-3] + "_" + command.split("/")[-1]
         try:
             result = subprocess.run(command, shell=True, capture_output=True, text=True, check=True)
             # 解析命令以用作字典键
-            key = command.split("/")[5] + "_" + command.split("/")[-1]
+            #key = command.split("/")[5] + "_" + command.split("/")[-1]
             # 将成功执行的命令输出（转换为整数）添加到结果字典
             results[key] = int(result.stdout.strip())
         except subprocess.CalledProcessError as e:
@@ -274,23 +295,49 @@ class Emulator(Runner):
   def calculate_traffic_difference(self, initial_results, final_results):
     # 计算两个结果集之间的差异
     difference_results = {}
+    rx_sum = 0
+    tx_sum = 0
+
     for key in initial_results:
         if key in final_results:
-            # 确保只有在两个结果集中都有相同键时才计算差异
             try:
                 difference = final_results[key] - initial_results[key]
                 difference_results[key] = difference
+
+                # 根据键的类型累加值
+                if "rx_packets" in key:
+                    rx_sum += difference
+                elif "tx_packets" in key:
+                    tx_sum += difference
+
             except TypeError:
-                # 如果结果集中包含错误信息，跳过该键
+                # 如果结果集中包含错误信息，标记该键的计算为错误
                 difference_results[key] = "Error in calculation"
         else:
             difference_results[key] = "Key not found in final results"
-    return difference_results   
+
+    # 把rx_packets和tx_packets的总和也存起来
+    totals = {
+        "total_rx_packets": rx_sum,
+        "total_tx_packets": tx_sum
+    }   
+    
+    return difference_results, totals
   
   
-  def save_results_to_file(self, results, filename):
+  def save_results_to_file(self, difference_results, totals, filename):
     # 将结果保存到文件
     with open(filename, "w") as file:
-        for key, value in results.items():
+        # 先写入difference_results的内容
+        for key, value in difference_results.items():
             file.write(f"{key} traffic change: {value}\n")
-    print(f"Results saved to {filename}")   
+        
+        # 添加一个分隔行以清晰区分两部分内容
+        file.write("\n--- Totals ---\n")
+        
+        # 接着写入totals的内容
+        for key, value in totals.items():
+            file.write(f"{key}: {value}\n")
+    
+    print(f"Results and totals saved to {filename}")
+

@@ -59,6 +59,7 @@ class UTMServer():
     self.cache = deque([], maxlen=1000)
     self._setup()
 
+
     try:
         while int(time.time()) < (self.start + self.timer):
             time.sleep(0.001)
@@ -69,6 +70,8 @@ class UTMServer():
     else:
         print("Session ended normally")
         self.save_to_file()
+
+
 
     #while int(time.time()) < (self.start + self.timer):
     #  time.sleep(0.001)
@@ -133,10 +136,10 @@ class UTMServer():
     #End of Ulysses
 
 
-    #self.utm_interface = network_sockets.TcpPersistent(self.utm_packet_handler, debug=False, port=55555, interface='')
-    #self.uas_interface = network_sockets.UdpInterface(self.uas_packet_handler, debug=False, port=44444, interface='')
-    #self.utm_interface.start()
-    #self.uas_interface.start()
+    self.utm_interface = network_sockets.TcpPersistent(self.utm_packet_handler, debug=False, port=55555, interface='')
+    self.uas_interface = network_sockets.UdpInterface(self.uas_packet_handler, debug=False, port=44444, interface='')
+    self.utm_interface.start()
+    self.uas_interface.start()
    
      #Ulysses adding
     #self.compare_distances()
@@ -201,21 +204,21 @@ class UTMServer():
             #})
             #UlyssesAddition
 
-            inspect=False
+            inspect=True
             self.visited_wt=self.visited_wt+1
 
-            if  self.tag=="uav1":
-              if aircraft_id =="wt1" or  aircraft_id =="wt2" or  aircraft_id =="wt3":
-                inspect=True   
-            elif  self.tag=="uav2":
-              if aircraft_id =="wt4" or  aircraft_id =="wt5" or  aircraft_id =="wt6":
-                inspect=True
-            elif  self.tag=="uav3":
-              if aircraft_id =="wt7" or  aircraft_id =="wt8" or  aircraft_id =="wt9":
-                inspect=True
+            #if  self.tag=="uav1":
+            #  if aircraft_id =="wt1" or  aircraft_id =="wt2" or  aircraft_id =="wt3":
+            #    inspect=True   
+            #elif  self.tag=="uav2":
+            #  if aircraft_id =="wt4" or  aircraft_id =="wt5" or  aircraft_id =="wt6":
+            #    inspect=True
+            #elif  self.tag=="uav3":
+            #  if aircraft_id =="wt7" or  aircraft_id =="wt8" or  aircraft_id =="wt9":
+            #    inspect=True
 
 
-            if inspect==True and len(self.insp_wt) <3 and (aircraft_id not in self.insp_wt):
+            if inspect==True and len(self.insp_wt) < 9 and (aircraft_id not in self.insp_wt):
               self.insp_wt.add(aircraft_id)
 
               self.missionTime=int(time.time()*1000000)
@@ -226,11 +229,11 @@ class UTMServer():
               print(inspector, "is inspecting", aircraft_id)
               print(data)
 
-            
-              self.save_historic(data)
 
-              if  len(self.insp_wt) == 3 and  self.final_missionTime!=self.missionTime :
+              self.save_historic(data)
+              if  len(self.insp_wt) == 9 and  self.final_missionTime!=self.missionTime :
                 self.final_missionTime= self.missionTime
+                print(inspector, "finishes the mission at", self.final_missionTime)
 
   #End of Ulysses  
   
@@ -337,7 +340,7 @@ class UTMServer():
     """   
     try:
       if not self.position_skip:
-        pos= str(int(time.time()*1000000)) + ';' + str(created)+ ';' + str(identification)+ ';' + str(current_position) + ';' + str(flying_distance) + ';' + str(self.visited_wt)
+        pos= str(int(time.time()*1000000)) + ';' + str(created)+ ';' + str(identification) + ';' + str(current_position) + ';' + str(flying_distance) + ';' + str(self.visited_wt)
         self.uav_position_tracker.append(pos)
         #self.position_file.write()
         
@@ -533,7 +536,7 @@ if __name__ == '__main__':
   logging.info("Starting UTM server")
   args = parse_args()
   try:
-    UTMServer(args.tag, 10800)
+    UTMServer(args.tag, 14400)
   except KeyboardInterrupt:
     logging.info("Exiting UTM Server")
 

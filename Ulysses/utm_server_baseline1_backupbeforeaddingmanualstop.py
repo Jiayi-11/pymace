@@ -58,22 +58,10 @@ class UTMServer():
     print("self.timer now is : ",self.timer)
     self.cache = deque([], maxlen=1000)
     self._setup()
-
-    try:
-        while int(time.time()) < (self.start + self.timer):
-            time.sleep(0.001)
-    except KeyboardInterrupt:
-        logging.info("Keyboard interrupt received, exiting UTM Server and saving file.")
-        self.save_to_file()
-        raise
-    else:
-        print("Session ended normally")
-        self.save_to_file()
-
-    #while int(time.time()) < (self.start + self.timer):
-    #  time.sleep(0.001)
-    #print("Session ended")
-    #self.save_to_file()
+    while int(time.time()) < (self.start + self.timer):
+      time.sleep(0.001)
+    print("Session ended")
+    self.save_to_file()
    #self.save_position() #UlyssesAddition
 
   def _setup(self):
@@ -133,10 +121,10 @@ class UTMServer():
     #End of Ulysses
 
 
-    #self.utm_interface = network_sockets.TcpPersistent(self.utm_packet_handler, debug=False, port=55555, interface='')
-    #self.uas_interface = network_sockets.UdpInterface(self.uas_packet_handler, debug=False, port=44444, interface='')
-    #self.utm_interface.start()
-    #self.uas_interface.start()
+    self.utm_interface = network_sockets.TcpPersistent(self.utm_packet_handler, debug=False, port=55555, interface='')
+    self.uas_interface = network_sockets.UdpInterface(self.uas_packet_handler, debug=False, port=44444, interface='')
+    self.utm_interface.start()
+    self.uas_interface.start()
    
      #Ulysses adding
     #self.compare_distances()
@@ -533,7 +521,7 @@ if __name__ == '__main__':
   logging.info("Starting UTM server")
   args = parse_args()
   try:
-    UTMServer(args.tag, 10800)
+    UTMServer(args.tag, 9000)
   except KeyboardInterrupt:
     logging.info("Exiting UTM Server")
 

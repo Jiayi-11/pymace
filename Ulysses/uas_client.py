@@ -81,8 +81,8 @@ class UASClient():
     logging.getLogger('apscheduler.executors.default').propagate = False
     self.scheduler.start()
     #self.scheduler.add_job(self.adsb_broadcaster, 'interval', seconds = self.interval, id="adsb_broadcaster", args=[])
-    self.uas_interface = network_sockets.UdpInterface(self.uas_packet_handler, debug=False, port=44444, interface='')
-    self.uas_interface.start()
+    #self.uas_interface = network_sockets.UdpInterface(self.uas_packet_handler, debug=False, port=44444, interface='')
+    #self.uas_interface.start()
     self.set_status("OK")
     self.set_position([0,0,0])
     self.set_velocity = 0
@@ -258,10 +258,10 @@ class UASClient():
     --------
 
     """
-    try: 
-      self.uas_interface.send('12.0.0.255', payload, id)
-    except:
-      logging.error("UTMClient>broadcast>Failed to broadcast data")
+   # try: 
+   #   self.uas_interface.send('12.0.0.255', payload, id)
+   # except:
+   #   logging.error("UTMClient>broadcast>Failed to broadcast data")
 
   def _create_id(self):
     """ 

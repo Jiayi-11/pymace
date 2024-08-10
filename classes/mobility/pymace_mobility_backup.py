@@ -89,20 +89,11 @@ class RandomWaypoint():
     Returns:
         _type_: _description_
     """
-    random_factor = self.maxvel * 0.2  # 20% of the maximum velocity as the random factor
-
     if ((self.pos[0] >= self.east) or (self.pos[0] <= 0)):
-      #self.velx = -self.velx
-      self.velx = -self.velx + random.uniform(-random_factor, random_factor)  # Add some randomness to velocity
-
+      self.velx = -self.velx
 
     if ((self.pos[1] >= self.south)  or (self.pos[1] <= 0)):
-      #self.vely = -self.vely
-      self.vely = -self.vely + random.uniform(-random_factor, random_factor)  # Add some randomness to velocity
-
-    # Ensure velocity stays within the maximum and minimum bounds
-    self.velx = max(min(self.velx, self.maxvel), -self.maxvel)
-    self.vely = max(min(self.vely, self.maxvel), -self.maxvel)
+      self.vely = -self.vely
 
     self.pos[0] = self.pos[0] + self.velx * self.dt
     self.pos[1] = self.pos[1] + self.vely * self.dt

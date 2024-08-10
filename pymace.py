@@ -58,7 +58,7 @@ class Mace():
             self.socket_thread.start()
             self.emulator.set_daemon_socket(self.daemon.get_socket())
             self._setup_emulation(self.emulator, args.scenario)
-            self._start(self.emulator, 1)
+            self._start(self.emulator, 2)
           else:
             logging.error("Not running in daemon mode and no scenario was passed as argument. Exiting.")
         self._shutdown()

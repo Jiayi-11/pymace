@@ -62,7 +62,7 @@ class UTMServer():
   
     self.start = int(time.time())
     self.timer = timer
-    print("self.timer ",self.timer)
+    print("self.timer now is : ",self.timer)
     self.cache = deque([], maxlen=1000)
     #self.battery=(random.randint(1,200));#Setting the remaining time in the battery in seconds, the maximum value should be less than timer
     
@@ -78,14 +78,29 @@ class UTMServer():
     #print(self.calculate_distance(0, 0, 1, 2))
 
     self._setup()
-    while int(time.time()) < (self.start + self.timer):  #Ulysses Replacement
-     #while (int(time.time()) < (self.start + self.battery)) and  (int(time.time()) < (self.start + self.timer)):
-      time.sleep(0.001)
-    print("Session ended")
-     
     
-    self.save_to_file()
-   #self.save_position() #UlyssesAddition
+
+    try:
+        while int(time.time()) < (self.start + self.timer):
+            time.sleep(0.001)
+    except KeyboardInterrupt:
+        logging.info("Keyboard interrupt received, exiting UTM Server and saving file.")
+        self.save_to_file()
+        raise
+    else:
+        print("Session ended normally")
+        self.save_to_file()
+
+    #while int(time.time()) < (self.start + self.timer):  #Ulysses Replacement
+    # #while (int(time.time()) < (self.start + self.battery)) and  (int(time.time()) < (self.start + self.timer)):
+    #  time.sleep(0.001)
+    #print("Session ended")
+
+   # self.save_to_file()
+   ##self.save_position() #UlyssesAddition
+
+
+
 
   def _setup(self):
     """ 
@@ -100,33 +115,12 @@ class UTMServer():
     """
     
     self.data_bank = []
-    self.report_file = open("/home/mace/pymace/reports/wind_farm/" + self.tag + ".csv","w")
+    self.report_file = open("/home/mace/pymace/reports/wind_farm/results_temp/" + self.tag + ".csv","w")
     #self.report_file.write('time;created;id;aircraft;position;vel;status;inspector_UAV;inspector_UAV_position\n')
     self.report_file.write('time;inspected_WT;inspected_WT_position;inspector_UAV;inspector_UAV_position;distance\n')
 
     #Ulysses Additions
-    #self.wt_coordinates = {
-    #    "wt1": (500, 500),  
-    #    "wt2": (1500, 500),  
-    #    "wt3": (2500, 500),
-    #    "wt4": (500, 1100),
-    #    "wt5": (1500, 1100),
-    #    "wt6": (2500, 1100),
-    #    "wt7": (500, 1700),
-    #    "wt8": (1500, 1700),
-    #    "wt9": (2500, 1700)  
-    #}
-    #self.wt_coordinates = {
-    #    "wt1": (100, 100),  
-    #    "wt2": (850, 100),  
-    #    "wt3": (1600, 100),
-    #    "wt4": (100, 550),
-    #    "wt5": (850, 550),
-    #    "wt6": (1600, 550),
-    #    "wt7": (100, 1000),
-    #    "wt8": (850, 1000),
-    #    "wt9": (1600, 1000)  
-    #}
+
     self.wt_coordinates = {
         "wt1": (100, 100),  
         "wt2": (700, 100),  
@@ -145,7 +139,7 @@ class UTMServer():
     self.position_skip = False
     self.interval = 0.1
     self.uav_position_tracker = [] #store the positions of the current object (uav) - Ulysses addition
-    self.position_file = open("/home/mace/pymace/reports/wind_farm/" + self.tag + "position.csv","w") #file to store UAV positions
+    self.position_file = open("/home/mace/pymace/reports/wind_farm/results_temp/" + self.tag + "position.csv","w") #file to store UAV positions
     self.position_file.write('time;created;uav;uav_position;flying_distance;visited_wt\n')
     self.scheduler = BackgroundScheduler(timezone=str(tzlocal.get_localzone()))
     logging.getLogger('apscheduler.executors.default').propagate = False
@@ -169,7 +163,8 @@ class UTMServer():
 
     #Ulysses adding
     #self.compare_distances()
-    self.scheduler.add_job(self.compare_distances, 'interval', seconds=6, max_instances=2 , id="compare_distances", args=[])
+    self.scheduler.add_job(self.compare_distances, 'interval', seconds = 5, id="compare_distances", args=[], max_instances = 3)
+  
 
     self.etcd.add_watch_callback('wt', self.etcd_callback, range_end='wt999')
     #etcd will watch for the key wt, and when it sees it created, it will run the function self.etcd_callback. 
@@ -195,50 +190,35 @@ class UTMServer():
     If the distance is less than 5, print the message.
     
     """
-    #x1, y1 = coordinates_wt
-    coordinates_uav = self.get_uav_position()
-    #print("the coordinates of", self.tag, "is", coordinates_uav)
-    x2, y2, _ = coordinates_uav
+    inspector = self.tag
+    inspector_position = self.get_uav_position()
+    x2, y2, _ = inspector_position
+
+    # 存储需要写入的数据
+    to_write = []
 
     for aircraft_id, (x1, y1) in self.wt_coordinates.items():
         distance = self.calculate_distance(x1, y1, x2, y2)
         #print(f"The distance between {self.tag} and wind turbine {aircraft_id} is {distance}m.")
 
         if distance < 65:
-            #print(f"The distance between {self.tag} and wind turbine {aircraft_id} is less than 500m.")
-            #try:
-            #  payload = pickle.loads(payload)
-            #except:
-            #  logging.error("UTMServer>utm_packet_handler>Received invalid UDP packet")
-
-            #unique_id = payload[0]
-
-            #created = payload[1][0]
-            #aircraft_id = payload[1][1]
-            #position = payload[1][2]
-            #velocity = payload[1][3]
-            #status = payload[1][4]
-            inspector = self.tag
-            inspector_position = self.get_uav_position()
-
             data = json.dumps({
-            #                   "created" : created,
-            #                   "msg-id" : unique_id,
-            #                   "position" : position,
-            #                   "velocity" : velocity,
-            #                   "status" : status,
                                "inspected_WT" : aircraft_id,
                                "inspected_WT_position" : (x1, y1), 
                                "inspector_UAV" : inspector,
                                "inspector_UAV_position" : inspector_position,
                                "distance" : distance,
             })
-            print(inspector, "is inspecting", aircraft_id)
-            print(data)
-            self.write_to_etcd(str(aircraft_id), data)
-            #self.write_to_etcd(aircraft_id, data)
-            #print("write_to_etcd is called")
+            
+            # 将需要写入的数据添加到列表中
+            to_write.append((str(aircraft_id), data))
 
+
+    # 对需要写入的数据进行处理
+    for aircraft_id, data in to_write:
+        print(inspector, "is trying to inspect", aircraft_id)
+        self.write_to_etcd(aircraft_id, data)        
+            
   #End of Ulysses  
 
 
@@ -384,13 +364,12 @@ class UTMServer():
     position = self.get_uav_position()
     
     #print("The current position of ",self.tag," is",position)
-    if self.previous_position!=[0,0]:
+    if self.previous_position != [0,0]:
       #last_distance_travelled=math.sqrt(((self.previous_position[0]- position[0])**2) + ((self.previous_position[1]- position[1])**2))
-      last_distance_travelled=math.sqrt((pow((self.previous_position[0]- position[0]),2))+(pow((self.previous_position[1]- position[1]),2)))
+      last_distance_travelled = math.sqrt((pow((self.previous_position[0]- position[0]),2))+(pow((self.previous_position[1]- position[1]),2)))
       #print("The last distance travelled ",self.tag," is",last_distance_travelled)
-      self.flying_distance+=last_distance_travelled
-      #print("The total flying distance ",self.tag," is",self.flying_distance)
-      self.save_position(created, identification,position,self.flying_distance)
+      self.flying_distance += last_distance_travelled
+      self.save_position(created, identification, position, self.flying_distance)
      
     
 
@@ -404,14 +383,7 @@ class UTMServer():
       if not self.position_skip:
         pos= str(int(time.time()*1000000)) + ';' + str(created)+ ';' + str(identification)+ ';'  + str(current_position)  + ';' + str(flying_distance)+ ';' + str(self.visited_wt)
         self.uav_position_tracker.append(pos)
-        #self.position_file.write()
-        
-        #if not self.position_skip:
-          #logging.info("UAV_server>save_to_file>Emulation session ended. Saving to positions file")
-      #else:
-          #self.position_file.flush()
-          #self.position_file.close()
-          #self.position_skip = True
+     
     except:
       pass
 
@@ -445,6 +417,7 @@ class UTMServer():
     return self.status
   
   def save_to_file(self):
+    print("=============The final save method is being executed================")
     """ 
     Save databank to file
 
@@ -566,16 +539,20 @@ class UTMServer():
     
     """
     #print("The length of get all is ",  len(list(self.etcd.get_all())) )
-    try:
-     self.visited_wt=self.visited_wt+1
-     print(self.visited_wt)
+    
+    self.visited_wt = self.visited_wt + 1
+    print("1.", self.tag, "Visited wt number is: ", self.visited_wt)
+    
+    try:    
      #if !(self.tag="uav1" and int(time.time()*1000000)>2):
+     print(self.etcd.get(str(aircraft_id)))
      if self.etcd.get(str(aircraft_id))==(None, None):
-       print("This wt is not stocked in etcd")
+       print("2. This wt is not stocked in etcd")
        try:
-           print(self.inspector, "is trying to write", aircraft_id, "to ETCD" )
-           print(data)
+           print("3.", self.tag, "is trying to write", aircraft_id, "to ETCD" )
            self.etcd.put(aircraft_id, data)
+           print("4. The data of", aircraft_id, "has been stocked in etcd.")
+           print(data)
           
            #if( len(list(self.etcd.get_all()))==9):
              #position_skip=True
@@ -591,8 +568,8 @@ class UTMServer():
        print("The data of this windturbine was already collected")
        pass
         
-    except:
-        print("Error while searching for key in the ETCD")
+    except Exception as e:
+        print("Error while searching for key in the ETCD:", str(e))
         pass
 
 #######################Class END###############################################################################################
@@ -642,7 +619,7 @@ if __name__ == '__main__':
   logging.info("Starting UTM server")
   args = parse_args()
   try:   
-    UTMServer(args.tag, 3600)
+    UTMServer(args.tag, 18000)
 
   except KeyboardInterrupt:
     logging.info("Exiting UTM Server")
