@@ -73,8 +73,8 @@ class UTMServer():
     if self.tag == "uav1":
     #if ((self.tag == "uav1") or (self.tag == "uav2")):
     #if self.timer > self.battery: #Setting the timer to the remaining amount in the battery when the battery is not enough
-       #self.timer =  900
-       self.sensortimer =  900
+       #self.timer =  100
+       self.sensortimer = 900
        print(f"{self.tag}, self.battery is limited: {self.timer}, self.sensor is limited: {self.sensortimer} ")
     else:
       print(f"{self.tag}, self.battery is perfect: {self.timer}")
@@ -172,6 +172,10 @@ class UTMServer():
     self.etcd = etcd3.client()
     print(f"Testing etcd object content: {self.etcd}")
 
+
+
+
+    #Ulysses adding
     # 将 self.start 和 self.timer 转换为 datetime 对象
     start_datetime = datetime.fromtimestamp(self.start)
     end_datetime = start_datetime + timedelta(seconds=self.sensortimer)
@@ -203,6 +207,7 @@ class UTMServer():
     If the distance is less than 5, print the message.
     
     """
+    print(f"{self.tag}, compare_distances job is being called.")
     inspector = self.tag
     inspector_position = self.get_uav_position()
     x2, y2, _ = inspector_position

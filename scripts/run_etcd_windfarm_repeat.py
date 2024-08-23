@@ -14,8 +14,8 @@ commands = [
     #"sudo ./pymace.py -s ./Ulysses/scenarios/wt_9_3_batteryfail_mostcompact_etcd_6.json",
     #"sudo ./pymace.py -s ./Ulysses/scenarios/wt_9_3_batteryfail_mostcompact_etcd_7.json",
     #"sudo ./pymace.py -s ./Ulysses/scenarios/wt_9_3_batteryfail_mostcompact_etcd_8.json",
-    #"sudo ./pymace.py -s ./Ulysses/scenarios/wt_9_3_batteryfail_mostcompact_etcd_9.json",
-    #"sudo ./pymace.py -s ./Ulysses/scenarios/wt_9_3_batteryfail_mostcompact_etcd_10.json",
+    "sudo ./pymace.py -s ./Ulysses/scenarios/wt_9_3_batteryfail_mostcompact_etcd_9.json",
+    "sudo ./pymace.py -s ./Ulysses/scenarios/wt_9_3_batteryfail_mostcompact_etcd_10.json",
     
     #"sudo ./pymace.py -s ./Ulysses/scenarios/wt_9_3_batteryfail_mostcompact_baseline1_2.json",
     #"sudo ./pymace.py -s ./Ulysses/scenarios/wt_9_3_batteryfail_mostcompact_baseline1_3.json",
@@ -27,15 +27,16 @@ commands = [
     #"sudo ./pymace.py -s ./Ulysses/scenarios/wt_9_3_batteryfail_mostcompact_baseline1_9.json",
     #"sudo ./pymace.py -s ./Ulysses/scenarios/wt_9_3_batteryfail_mostcompact_baseline1_10.json",
 
-    "sudo ./pymace.py -s ./Ulysses/scenarios/wt_9_3_batteryfail_mostcompact_baseline2_2.json",
-    "sudo ./pymace.py -s ./Ulysses/scenarios/wt_9_3_batteryfail_mostcompact_baseline2_3.json",
-    "sudo ./pymace.py -s ./Ulysses/scenarios/wt_9_3_batteryfail_mostcompact_baseline2_4.json",
-    "sudo ./pymace.py -s ./Ulysses/scenarios/wt_9_3_batteryfail_mostcompact_baseline2_5.json",
-    "sudo ./pymace.py -s ./Ulysses/scenarios/wt_9_3_batteryfail_mostcompact_baseline2_6.json",
-    "sudo ./pymace.py -s ./Ulysses/scenarios/wt_9_3_batteryfail_mostcompact_baseline2_7.json",
-    "sudo ./pymace.py -s ./Ulysses/scenarios/wt_9_3_batteryfail_mostcompact_baseline2_8.json",
-    "sudo ./pymace.py -s ./Ulysses/scenarios/wt_9_3_batteryfail_mostcompact_baseline2_9.json",
-    "sudo ./pymace.py -s ./Ulysses/scenarios/wt_9_3_batteryfail_mostcompact_baseline2_10.json",
+    #"sudo ./pymace.py -s ./Ulysses/scenarios/wt_9_3_batteryfail_mostcompact_baseline2_1.json",
+    #"sudo ./pymace.py -s ./Ulysses/scenarios/wt_9_3_batteryfail_mostcompact_baseline2_2.json",
+    #"sudo ./pymace.py -s ./Ulysses/scenarios/wt_9_3_batteryfail_mostcompact_baseline2_3.json",
+    #"sudo ./pymace.py -s ./Ulysses/scenarios/wt_9_3_batteryfail_mostcompact_baseline2_4.json",
+    #"sudo ./pymace.py -s ./Ulysses/scenarios/wt_9_3_batteryfail_mostcompact_baseline2_5.json",
+    #"sudo ./pymace.py -s ./Ulysses/scenarios/wt_9_3_batteryfail_mostcompact_baseline2_6.json",
+    #"sudo ./pymace.py -s ./Ulysses/scenarios/wt_9_3_batteryfail_mostcompact_baseline2_7.json",
+    #"sudo ./pymace.py -s ./Ulysses/scenarios/wt_9_3_batteryfail_mostcompact_baseline2_8.json",
+    #"sudo ./pymace.py -s ./Ulysses/scenarios/wt_9_3_batteryfail_mostcompact_baseline2_9.json",
+    #"sudo ./pymace.py -s ./Ulysses/scenarios/wt_9_3_batteryfail_mostcompact_baseline2_10.json",
 ]
 
 # 源文件夹
@@ -48,7 +49,7 @@ base_target_dir = '/home/mace/pymace/reports/wind_farm/results/'
 for command in commands:
     # 使用正则表达式提取.json文件名中的最后一个数字
     
-    match = re.search(r'baseline2_(\d+)\.json', command)
+    match = re.search(r'etcd_(\d+)\.json', command)
     #match = re.search(r'etcd_(\d+)\.json', command)
     if match:
         folder_index = match.group(1)  # 获取匹配到的数字，即文件名中的编号

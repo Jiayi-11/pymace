@@ -12,7 +12,7 @@
         "username": "mace",
         "disks_folder" : "/mnt/pymace/",
         "report_folder" : "/home/mace/pymace/reports/wind_farm/results_temp/",
-        "runtime": 8050,
+        "runtime": 7250,
         "emane_location": [47.57917, -122.13232, 2.0],
         "emane_scale": 150
     },

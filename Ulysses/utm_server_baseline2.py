@@ -57,6 +57,15 @@ class UTMServer():
     self.timer = timer
     print("self.timer now is : ",self.timer)
     self.cache = deque([], maxlen=1000)
+    
+    if self.tag == "uav1":
+    #if ((self.tag == "uav1") or (self.tag == "uav2")):
+    #if self.timer > self.battery: #Setting the timer to the remaining amount in the battery when the battery is not enough
+       self.timer =  900
+       print(f"{self.tag}, self.battery is limited: {self.timer}")
+    else:
+      print(f"{self.tag}, self.battery is perfect: {self.timer}")
+    
     self._setup()
 
 
@@ -536,7 +545,7 @@ if __name__ == '__main__':
   logging.info("Starting UTM server")
   args = parse_args()
   try:
-    UTMServer(args.tag, 14400)
+    UTMServer(args.tag, 7200)
   except KeyboardInterrupt:
     logging.info("Exiting UTM Server")
 

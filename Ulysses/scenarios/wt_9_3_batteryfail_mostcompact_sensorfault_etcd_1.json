@@ -49,8 +49,8 @@
             "name" : "uav1",
             "settings":   {
                 "_id": 0,
-                "x": 304,
-                "y": 193,
+                "x": 1195,
+                "y": 225,
                 "fill": "#1100FF",
                 "stroke": "black",
                 "strokeWidth": 0,
@@ -67,7 +67,7 @@
                 "type": "node",
                 "range": 350
             },
-            "function" : [ "disk", "/home/mace/pymace/Ulysses/utm_server_baseline1.py -t uav1"],
+            "function" : [ "disk", "etcd" , "/home/mace/pymace/Ulysses/utm_server_etcd_sensormisbehavior.py -t uav1"],
             "type": "UTM",
             "extra": {
                 "disks": "False",
@@ -90,8 +90,8 @@
             "name" : "uav2",
             "settings": {
                 "_id": 1,
-                "x": 304,
-                "y": 193,
+                "x": 1195,
+                "y": 225,
                 "fill": "#1100FF",
                 "stroke": "black",
                 "strokeWidth": 0,
@@ -108,7 +108,7 @@
                 "type": "node",
                 "range": 250
               },
-            "function" :  ["disk", "/home/mace/pymace/Ulysses/utm_server_baseline1.py -t uav2"],
+            "function" :  ["disk", "etcd" , "/home/mace/pymace/Ulysses/utm_server_etcd_sensormisbehavior.py -t uav2"],
             "type": "UTM",
             "extra": {
                 "disks": "False",
@@ -131,8 +131,8 @@
             "name" : "uav3",
             "settings": {
                 "_id": 2,
-                "x": 304,
-                "y": 193,
+                "x": 1195,
+                "y": 225,
                 "fill": "#1100FF",
                 "stroke": "black",
                 "strokeWidth": 0,
@@ -149,7 +149,7 @@
                 "type": "node",
                 "range": 250
               },
-            "function" : ["disk",  "/home/mace/pymace/Ulysses/utm_server_baseline1.py -t uav3"],
+            "function" : ["disk", "etcd" , "/home/mace/pymace/Ulysses/utm_server_etcd_sensormisbehavior.py -t uav3"],
             "type": "UTM",
             "extra": {
                 "disks": "False",

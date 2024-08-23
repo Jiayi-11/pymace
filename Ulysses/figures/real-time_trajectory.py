@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 
 # 读取CSV文件并跳过第一行
-file_path = '/home/mace/pymace/reports/wind_farm/reports20240429/etcd_nofaults4/Folder_2/uav3position.csv'
+file_path = '/home/mace/pymace/reports/wind_farm/reports20240429/etcd_nofaults5/Folder_4/uav1position.csv'
 #file_path = '/home/mace/pymace/reports/wind_farm/reports20240429/bl1_nofaults_mostcompact_65_newmobility/Folder_10/uav1position.csv'
 
 df = pd.read_csv(file_path, sep=';', skiprows=1, header=None)
